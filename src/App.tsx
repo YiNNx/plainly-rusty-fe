@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Post from './pages/Post'; // 新建一个Post页面
 import { Sidebar, PageContainer, MainContent } from './containers/PageLayout';
+import Friends from './pages/Friends';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/friends" element={<Friends />} />
             <Route path="/post/:id" element={<Post />} /> {/* 使用参数: id */}
           </Routes>
         </MainContent>

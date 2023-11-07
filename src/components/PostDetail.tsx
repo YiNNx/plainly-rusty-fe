@@ -3,18 +3,16 @@ import styled from 'styled-components';
 import { theme } from '../theme';
 
 const PostContainer = styled.div`
-  /* background-color: #ffffff; */
-  padding: 20px;
-  border-radius: 5px;
+  padding: 1.25rem;
 `;
 
 const PostTitle = styled.h2`
-  font-size: 24px;
+  font-size: 1.5rem;
   color: ${theme.colors.primary};
 `;
 
 const PostContent = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
   color: ${theme.colors.text};
   min-height: 10rem;
 `;

@@ -20,7 +20,7 @@ const Post = styled.div`
 
 const PostTitle = styled.span`
   color: ${theme.colors.primary};
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
   /* margin: 1rem; */
   

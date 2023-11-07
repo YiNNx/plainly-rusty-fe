@@ -1,13 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { theme } from '../theme';
 import PostDetail from '../components/PostDetail';
 
 const Post: React.FC = () => {
   const { id } = useParams(); // 通过useParams()获取帖子ID
 
-  // 根据帖子ID从API或数据源获取帖子内容
   const post = {
     id: '1',
     title: '海拉鲁游记',
