@@ -1,58 +1,28 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
-const PostContainer = styled.div`
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 5px;
-`;
-
-const PostTitle = styled.h2`
-  font-size: 24px;
-  color: #333;
-`;
-
-const PostContent = styled.p`
-  font-size: 16px;
-  color: #555;
-  min-height: 10rem;
-`;
-
-const PostTag = styled.span`
-  background-color: #78accf;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px;
-`;
-
-const PostTime = styled.span`
-  font-size: 14px;
-  color: #999;
-`;
-
+import { theme } from '../theme';
+import PostDetail from '../components/PostDetail';
 
 const Post: React.FC = () => {
   const { id } = useParams(); // 通过useParams()获取帖子ID
 
   // 根据帖子ID从API或数据源获取帖子内容
   const post = {
-    title: 'Sample Post Title',
-    content: 'This is the content of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    id: '1',
+    title: '海拉鲁游记',
+    content: '借了朋友的旷野之息卡带试玩，结果国庆剩下的假期全都在超高强度玩塞尔达，再也没打开 ns 里的其他游戏......一旦玩过塞尔达，你这辈子就定型了，你一辈子就沉迷在海拉鲁里了，一个沉迷塞尔达的人再坏也坏不到哪里去，这就是我的善恶观！正文之海拉鲁游记，开始新手村的美丽景色边爬山边看日落林克的回眸给它喂苹果会带你去找宝箱的乖乖伯恩山克洛格的恶趣味奇怪仪式好耶，新衣服和新坐骑成为料理大师重生之我是海拉鲁恶霸卓拉族的奇怪口癖和成语',
     tag: 'Programming',
     time: 'November 12, 2023',
   };
-  
+
   return (
-    <PostContainer>
-      <PostTitle>{post.title}</PostTitle>
-      <PostContent>{post.content}</PostContent>
-      <div>
-        <PostTag>{post.tag}</PostTag>
-        <PostTime>{post.time}</PostTime>
-      </div>
-    </PostContainer>
+    <PostDetail
+      title={post.title}
+      id={post.id}
+      content={post.content}
+      time={post.time}
+      tag={post.tag} />
   );
 };
 
