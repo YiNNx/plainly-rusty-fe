@@ -2,7 +2,6 @@ import { theme } from '../theme';
 import styled from 'styled-components';
 
 const PostMarkdownContent = styled.div`
-  width: 51vw;
   font-size: 1rem;
   color: ${theme.colors.text};
   margin-bottom: 5rem;
@@ -148,11 +147,6 @@ code {
     font-family: 'JetBrainsMono';
 }
 
-pre {
-  width: 51vw;
-
-
-}
 
 img {
     max-width: 20rem;

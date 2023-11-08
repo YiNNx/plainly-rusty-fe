@@ -8,6 +8,8 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const PostContainer = styled.div`
   padding: 1.25rem;
+  max-width: 51vw;
+
 `;
 
 const PostTitle = styled.h2`

@@ -43,6 +43,7 @@ const Header: React.FC = () => {
           <li><a href="/about">About</a></li>
           <li><a href="/friends">Friends</a></li>
           <li><a href="/rss.xml">RSS</a></li>
+          <li><a href="/compose">Compose</a></li>
         </ul>
         <Account />
       </nav>

@@ -9,6 +9,7 @@ export const MainContent = styled.div`
   flex: 1;
   padding: 4rem 7vw 4rem 15vw; 
   margin-right: 20vw;
+  max-width: 70vw;
 `;
 
 export const Sidebar = styled.div`
