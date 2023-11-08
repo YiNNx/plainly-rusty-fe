@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 import { theme } from '../theme';
+import PostMarkdownContent from './PostMarkdownContent';
 
 const PostContainer = styled.div`
   padding: 1.25rem;
@@ -11,16 +13,10 @@ const PostTitle = styled.h2`
   color: ${theme.colors.primary};
 `;
 
-const PostContent = styled.p`
-  font-size: 1rem;
-  color: ${theme.colors.text};
-  min-height: 10rem;
-`;
 
 const PostTag = styled.span`
   font-family: 'Cantarell';
   background-color: ${theme.colors.block};
-  /* border: 1px solid ${theme.colors.primary}; */
   color: ${theme.colors.primary};
   font-size: .9rem;
   padding: 0.1rem 0.75rem;
@@ -35,24 +31,26 @@ const PostTime = styled.span`
 `;
 
 interface PostDetailProps {
-    title: string;
-    id: string;
-    content: string;
-    time: string;
-    tag: string;
+  title: string;
+  id: string;
+  content: string;
+  time: string;
+  tag: string;
 }
 
 const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }) => {
-    return (
-        <PostContainer>
-            <PostTitle>{title}</PostTitle>
-            <PostContent>{content}</PostContent>
-            <div>
-                <PostTag>{tag}</PostTag>
-                <PostTime>{time}</PostTime>
-            </div>
-        </PostContainer>
-    );
+  return (
+    <PostContainer>
+      <PostTitle>{title}</PostTitle>
+      <PostMarkdownContent>
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </PostMarkdownContent>
+      <div>
+        <PostTag>{tag}</PostTag>
+        <PostTime>{time}</PostTime>
+      </div>
+    </PostContainer>
+  );
 };
 
 export default PostDetail;

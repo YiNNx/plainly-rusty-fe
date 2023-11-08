@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme';
-import SvgAccount from '../assets/account.svg'
+import Account from './Account';
+
 
 const HeaderContainer = styled.header`
   align-items: center;
@@ -33,35 +34,6 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const Account = styled.div`
-  position: fixed;
-  bottom: 5rem;
-
-  img {
-      vertical-align: middle;
-      width: 1.75rem;
-      /* border: 1px solid ${theme.colors.secondary}; */
-      border-radius: 3rem;
-      background-color: ${theme.colors.block};
-    }
-
-    &:hover {
-      span{
-
-        visibility: visible;
-      }
-    }
-
-  span {
-    padding: .5rem;
-    color: ${theme.colors.primary};
-    visibility: hidden;
-
-    text-decoration: underline 1px;
-      text-underline-offset: .4rem;
-  }
-`;
-
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
@@ -72,12 +44,7 @@ const Header: React.FC = () => {
           <li><a href="/about">About</a></li>
           <li><a href="/friends">Friends</a></li>
         </ul>
-        <a href="/login">
-          <Account>
-            <img src={SvgAccount} alt="Account" />
-            <span>Log in</span>
-          </Account>
-        </a>
+        <Account />
       </nav>
     </HeaderContainer>
   );
