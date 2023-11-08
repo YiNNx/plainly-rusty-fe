@@ -7,9 +7,9 @@ export const theme = {
     background: '#ffffff',
     block: '#f6f8fa',
     highlight: '#ffffb5c2',
-    shadow: '#d2dff4',
+    shadow: '#c8d2e1',
     light: '#5bb3ff',
-    grey: '#6e7580',
+    grey: '#b2b2b2',
     // 添加更多颜色变量
   },
 };

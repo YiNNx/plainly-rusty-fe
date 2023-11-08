@@ -18,17 +18,20 @@ const PostContent = styled.p`
 `;
 
 const PostTag = styled.span`
-  background-color: ${theme.colors.secondary};
-  color: ${theme.colors.background};
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px;
+  font-family: 'Cantarell';
+  background-color: ${theme.colors.block};
+  /* border: 1px solid ${theme.colors.primary}; */
+  color: ${theme.colors.primary};
+  font-size: .9rem;
+  padding: 0.1rem 0.75rem;
+  border-radius: 2rem;
 `;
 
 const PostTime = styled.span`
-  font-size: 14px;
-  color: #999;
+  font-family: 'Cantarell';
+  font-size: 0.875rem;
+  color: #b2b2b2;
+  float: right;
 `;
 
 interface PostDetailProps {

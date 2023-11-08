@@ -23,9 +23,11 @@
 body {
   /* background-color: #f6f8fa; */
   margin: 0;
+  text-align: justify;
   font-family: -apple-system, BlinkMacSystemFont, 'SourceHanSerifCN';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {

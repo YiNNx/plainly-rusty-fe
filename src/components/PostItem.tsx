@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from '../theme';
+import { PostTag } from './PostTag';
 
 const Post = styled.div`
 
-  padding: 0rem 2rem;
+  padding: 0rem 1.7rem;
   margin: 3rem 5rem;
   /* border-radius: 5px; */
   /* transition: transform 0.2s; */
@@ -15,6 +16,7 @@ const Post = styled.div`
   &:hover {
     /* background-color: ${theme.colors.background}; */
     /* transform: scale(1.05); */
+  border-left: 2px solid ${theme.colors.shadow};
   }
   `;
 
@@ -29,28 +31,17 @@ const PostTitle = styled.span`
   }
 `;
 
-const PostTag = styled.span`
-  font-family: 'Cantarell';
-  background-color: ${theme.colors.block};
-  /* border: 1px solid ${theme.colors.primary}; */
-  float: right;
-  color: ${theme.colors.primary};
-  font-size: 13px;
-  padding: 2px 12px;
-  border-radius: 15px;
-  margin: 6px 0;
-  /* margin-right: 10px; */
-`;
+
 
 const PostTime = styled.span`
-  font-family: 'JetBrainsMono';
-  font-size: 14px;
+  font-family: 'Cantarell';
+  font-size: 0.875rem;
   color: #b2b2b2;
   /* float: right; */
 `;
 
 const PostContent = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
   color: ${theme.colors.text};
 `;
 

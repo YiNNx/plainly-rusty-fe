@@ -41,15 +41,24 @@ const Account = styled.div`
       vertical-align: middle;
       width: 1.75rem;
       /* border: 1px solid ${theme.colors.secondary}; */
-      /* border-radius: 3rem; */
+      border-radius: 3rem;
+      background-color: ${theme.colors.block};
+    }
+
+    &:hover {
+      span{
+
+        visibility: visible;
+      }
     }
 
   span {
-    font-weight: normal;
     padding: .5rem;
     color: ${theme.colors.primary};
+    visibility: hidden;
+
     text-decoration: underline 1px;
-    text-underline-offset: .4rem;
+      text-underline-offset: .4rem;
   }
 `;
 

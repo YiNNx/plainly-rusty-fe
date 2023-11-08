@@ -12,8 +12,8 @@ export const MainContent = styled.div`
 `;
 
 export const Sidebar = styled.div`
-  padding: 4rem 4rem;
-  width: 12rem; /* 调整边栏的宽度 */
+  padding: 4rem 5rem 4rem 3rem;
+  width: 12rem; 
   position: fixed;
   right: 0;
   top: 0;
