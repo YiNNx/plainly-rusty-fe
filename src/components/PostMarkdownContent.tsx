@@ -45,8 +45,7 @@ const PostMarkdownContent = styled.div`
 
   h1 {
     font-size: 1.5rem;
-    padding-top: 0.9rem;
-    margin-bottom: 2.3rem;
+    color: ${theme.colors.primary};
   }
   
   h2 {
@@ -134,16 +133,12 @@ blockquote {
 }
 
 code {
-    color: ${theme.colors.primary};
-    font-size: 94%;
-    font-weight: normal;
-    word-wrap: break-word;
-    padding: 2px 4px 2px;
-    border-radius: 3px;
-    margin: 2px;
-    background-color: ${theme.colors.block};
+    font-size: .8rem;
     font-family: 'JetBrainsMono';
-    word-break: break-all;
+}
+
+pre {
+  width: 50rem;
 }
 
 img {
