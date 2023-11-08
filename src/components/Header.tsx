@@ -40,9 +40,9 @@ const Header: React.FC = () => {
       <h1><a href="/">just-plain.fun</a></h1>
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/friends">Friends</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
         </ul>
         <Account />
       </nav>

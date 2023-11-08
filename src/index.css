@@ -40,7 +40,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 2rem;
-  background: #d7dde7;
+  background: #d7dde7af;
 }
 
 ::-webkit-scrollbar {

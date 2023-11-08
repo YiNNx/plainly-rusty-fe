@@ -2,6 +2,7 @@ import { theme } from '../theme';
 import styled from 'styled-components';
 
 const PostMarkdownContent = styled.div`
+  width: 51vw;
   font-size: 1rem;
   color: ${theme.colors.text};
   margin-bottom: 5rem;
@@ -10,6 +11,7 @@ const PostMarkdownContent = styled.div`
   letter-spacing: 0px;
   word-break: break-word;
   word-wrap: break-word;
+  font-family: 'Cantarell','SourceHanSerifCN';
 
   p {
     padding-top: .2rem;
@@ -50,15 +52,18 @@ const PostMarkdownContent = styled.div`
   
   h2 {
     font-size: 1.25rem;
-    background-color: ${theme.colors.primary};
-    color: ${theme.colors.background};
-    padding: 1px 12.5px;
-    border-radius: 4px;
+    /* background-color: #4870ac; */
+    /* color: #ffffff; */
+    line-height: 1;
+    padding: 0 8px;
+    /* border-radius: 4px; */
     display: inline-block;
-    margin: .3em 0;
+    margin-top: 1.6rem;
+    margin-bottom: 0.8rem;
+    border-left: 4px solid #4870ac;
   }
 
-  h2 a {
+  /* h2 a {
     text-decoration: underline;
     color: ${theme.colors.background};
     border-bottom: 0;
@@ -73,14 +78,15 @@ const PostMarkdownContent = styled.div`
   h2 code {
     color: ${theme.colors.background};
     background-color: ${theme.colors.primary};
-  }
+  } */
 
   h3 {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     margin: 1em 0 1em;
   }
 
   h4,h5,h6 {
+    font-weight: normal;
     font-size: 1rem;
     margin: 0.8em 0 0.8em;
   }
@@ -93,6 +99,11 @@ ul, ol {
     margin-top: 8px;
     margin-bottom: 8px;
     padding-left: 20px;
+}
+
+::marker {
+    font-weight: bold;
+    color: ${theme.colors.secondary};
 }
 
 
@@ -138,7 +149,9 @@ code {
 }
 
 pre {
-  width: 50rem;
+  width: 51vw;
+
+
 }
 
 img {

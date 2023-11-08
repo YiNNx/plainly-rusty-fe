@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import { theme } from '../theme';
-import PostMarkdownContent from './PostMarkdownContent';
+import PostMarkdownContent from './Markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -28,9 +28,10 @@ const PostTag = styled.span`
 const PostTime = styled.span`
   font-family: 'Cantarell';
   font-size: 0.875rem;
-  color: #b2b2b2;
+  color: ${theme.colors.grey};
   float: right;
 `;
+
 const WithSyntaxHighlighter = ({ content }: { content: any }) => {
   return (
     <ReactMarkdown components={{
