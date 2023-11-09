@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
   }
 
   h1 a span {
-    background-image: linear-gradient(45deg, ${theme.colors.secondary},  ${theme.colors.primary},  ${theme.colors.primary});
+    background-image: linear-gradient(50deg, ${theme.colors.secondary}, ${theme.colors.primary});
     transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
     padding: 0;
     color: ${theme.colors.background};
@@ -65,7 +65,6 @@ const Header: React.FC = () => {
           <li><a href="/about">About</a></li>
           <li><a href="/friends">Friends</a></li>
           <li><a href="/rss.xml">RSS</a></li>
-          <li><a href="/compose">Compose</a></li>
         </ul>
         <Account />
       </nav>

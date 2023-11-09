@@ -14,12 +14,13 @@ const CommentsContainer = styled.div`
   }
 
   hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
     border: 0;
-    border-top: 2px solid #eef2f5;
+    border-top: 2px solid ${theme.colors.lightgrey};
     border-radius: 2px;
   }
+
   svg{
       float: right;
       fill: ${theme.colors.grey};
@@ -70,14 +71,14 @@ interface CommentListProps {
 const CommentList: React.FC<CommentListProps> = ({ comments }) => {
   return (
     <CommentsContainer>
-      <hr/>
+      <hr />
       {comments.map((comment) => (
         <CommentItem key={comment.id}>
           <CommentContent>
             <div>
               <CommentNickname>{comment.nickname}</CommentNickname>
               <CommentTime>{comment.time}</CommentTime>
-              <IconDelete/>
+              <IconDelete />
             </div>
             <div>{comment.content}</div>
           </CommentContent>

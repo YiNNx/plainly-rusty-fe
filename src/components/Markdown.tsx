@@ -9,8 +9,8 @@ export const PostMarkdownContent = styled.div`
   color: ${theme.colors.text};
   margin-bottom: 5rem;
   line-height: 1.6;
-  word-spacing: 0px;
-  letter-spacing: 0px;
+  word-spacing: 0;
+  letter-spacing: 0;
   word-break: break-word;
   word-wrap: break-word;
 
@@ -24,10 +24,10 @@ export const PostMarkdownContent = styled.div`
 
   a {
         color: ${theme.colors.primary};
-        border-bottom: 1px solid ${theme.colors.primary};
-        margin: 2px;
-        text-decoration: none;
+        text-decoration: underline 1px;
+        text-underline-offset: .4rem;
         word-wrap: break-word;
+        padding: 0 .2rem;
   }
 
   strong {
@@ -37,13 +37,12 @@ export const PostMarkdownContent = styled.div`
   mark {
     background: ${theme.colors.highlight};
     padding: 1px .15rem;
-    border-radius: 1px;
     color: inherit;
 }
 
   h1,h2,h3,h4,h5,h6 {
     color: ${theme.colors.primary};
-    padding: 0px;
+    padding: 0;
   }
 
   h1 {
@@ -57,7 +56,7 @@ export const PostMarkdownContent = styled.div`
     background-image: linear-gradient(45deg, ${theme.colors.secondary}, ${theme.colors.primary});
     transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
     color: ${theme.colors.background};
-    padding: 0px 8px;
+    padding: 0 .5rem;
     /* border-radius: 8px; */
     display: inline-block;
     margin: .8rem 0;
@@ -99,9 +98,9 @@ export const PostMarkdownContent = styled.div`
 }
 
 ul, ol {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding-left: 20px;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    padding-left: 1.25rem;
 }
 
 ::marker {
@@ -127,8 +126,8 @@ ol {
 }
 
 li section {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: .3rem;
+    margin-bottom: .3rem;
     line-height: 1.7rem;
     text-align: justify;
     color: ${theme.colors.text};
@@ -140,8 +139,8 @@ blockquote {
     font-size: .9em;
     overflow: auto;
     border-left: 3px solid ${theme.colors.secondary};
-    padding: 15px 30px 15px 20px;
-    margin: 20px 0;
+    padding: 0.9rem 1.875rem .9rem 1.25rem;
+    margin: 1.25rem 0;
     background: ${theme.colors.block};
 }
 
@@ -156,8 +155,8 @@ img {
   }
 
   hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
     border: 0;
     border-top: 2px solid #eef2f5;
     border-radius: 2px;

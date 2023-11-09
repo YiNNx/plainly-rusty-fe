@@ -16,7 +16,7 @@ const DropdownContainer = styled.div`
 const DropdownButton = styled.button`
   outline: none;
   padding: 0;
-  font-size: 16px;
+  font-size: 1;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -24,21 +24,21 @@ const DropdownButton = styled.button`
 
 const DropdownList = styled.ul`
   min-width: 8rem;
-  position: absolute; // Change this line
+  position: absolute; 
   top: auto;
-  bottom: 100%;  // Change this line
+  bottom: 100%;
   left: 0;
   margin-bottom: 2rem;
   padding: 0;
   list-style: none;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px ${theme.colors.shadow};
   border-radius: 1rem;
 `;
 
 const DropdownItem = styled.li`
   margin: 0 1rem;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #333;
   cursor: pointer;
 
@@ -99,7 +99,7 @@ interface UserInfo {
 
 
 const Account: React.FC = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [user, setUser] = useState<UserInfo | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 

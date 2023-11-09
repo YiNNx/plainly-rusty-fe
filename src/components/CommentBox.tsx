@@ -17,8 +17,8 @@ const CommentForm = styled.form`
 `;
 
 const CommentInput = styled.textarea`
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 0.625;
+  margin-bottom: 0.625rem;
  border:0;
  border-radius:1rem;
  background-color:${theme.colors.block};
