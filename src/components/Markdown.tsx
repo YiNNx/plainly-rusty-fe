@@ -58,7 +58,7 @@ export const PostMarkdownContent = styled.div`
     transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
     color: ${theme.colors.background};
     padding: 0px 8px;
-    /* border-radius: 4px; */
+    /* border-radius: 8px; */
     display: inline-block;
     margin: .8rem 0;
     /* border-left: 4px solid #4870ac; */

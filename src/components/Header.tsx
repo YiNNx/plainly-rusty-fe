@@ -14,20 +14,21 @@ export const HeaderContainer = styled.header`
   }
 
   h1 a span {
-    background-image: linear-gradient(45deg, ${theme.colors.secondary}, ${theme.colors.primary});
+    background-image: linear-gradient(45deg, ${theme.colors.secondary},  ${theme.colors.primary},  ${theme.colors.primary});
     transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
+    padding: 0;
     color: ${theme.colors.background};
-    padding: 0 5px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     &:hover {
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(45deg, ${theme.colors.primary}, ${theme.colors.primary});
     }
   }
 
   h1 a {
     &:hover {
-      text-decoration: none;
+      color: ${theme.colors.primary};
     }
   }
 

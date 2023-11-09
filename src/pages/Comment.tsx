@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const PostCommentContainer = styled.div`
-  margin: 3rem 0;
+  margin: 4rem 0;
 `;
 
 const PostComment: React.FC = () => {

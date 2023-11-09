@@ -43,9 +43,6 @@ const CommentButton = styled.button`
     cursor: pointer;
     width: 8%;
 
-
-
-
     svg {
         fill: ${theme.colors.secondary};
         width: 1.75rem;

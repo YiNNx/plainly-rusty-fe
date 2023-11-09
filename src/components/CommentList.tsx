@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Comment } from '../models/comment';
 import { theme } from '../theme';
+import { ReactComponent as IconDelete } from '../assets/delete.svg'
 
 // 评论区组件
 const CommentsContainer = styled.div`
@@ -18,7 +19,17 @@ const CommentsContainer = styled.div`
     border: 0;
     border-top: 2px solid #eef2f5;
     border-radius: 2px;
-}
+  }
+  svg{
+      float: right;
+      fill: ${theme.colors.grey};
+      width: 1rem;
+      padding-left: .8rem;
+
+      &:hover{
+      fill: ${theme.colors.primary};
+      }
+  }
 `;
 
 const CommentItem = styled.div`
@@ -66,6 +77,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
             <div>
               <CommentNickname>{comment.nickname}</CommentNickname>
               <CommentTime>{comment.time}</CommentTime>
+              <IconDelete/>
             </div>
             <div>{comment.content}</div>
           </CommentContent>

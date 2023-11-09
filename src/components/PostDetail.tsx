@@ -2,13 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme';
 import { PostMarkdownContent, WithSyntaxHighlighter } from './Markdown';
-
-
+import { ReactComponent as IconEdit } from '../assets/edit.svg'
+import { ReactComponent as IconDelete } from '../assets/delete.svg'
 
 const PostTitle = styled.h2`
   font-size: 1.5rem;
   color: ${theme.colors.primary};
   margin: 1rem 0;
+
+  svg{
+    float: right;
+    fill: ${theme.colors.secondary};
+    width: 1.3rem;
+    padding-left: .8rem;
+
+    &:hover{
+    fill: ${theme.colors.primary};
+    }
+  }
 `;
 
 const PostTag = styled.span`
@@ -36,7 +47,12 @@ interface PostDetailProps {
 const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }) => {
   return (
     <div>
-      <PostTitle>{title}</PostTitle>
+      <div>
+        <PostTitle>
+          {title}
+          <IconDelete /><IconEdit />
+        </PostTitle>
+      </div>
       <PostMarkdownContent>
         <WithSyntaxHighlighter content={content} />
       </PostMarkdownContent>

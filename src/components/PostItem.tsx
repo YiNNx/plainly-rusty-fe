@@ -24,7 +24,7 @@ const Post = styled.div`
 
 const PostTitle = styled.span`
   color: ${theme.colors.tertiary};
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: bold;
   /* margin: 1rem; */
   &:hover {
@@ -44,7 +44,7 @@ const PostContent = styled.p`
   line-height: 1.6rem;
   font-size: 1rem;
   color: ${theme.colors.text};
-  margin: .5rem 0;
+  margin: .4rem 0;
 `;
 
 

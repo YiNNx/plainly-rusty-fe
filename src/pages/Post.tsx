@@ -7,7 +7,6 @@ import styled from 'styled-components';
 const PostContainer = styled.div`
   margin: 2rem 1rem 3rem 2rem;
   max-width: 51vw;
-
 `;
 
 const Post: React.FC = () => {
