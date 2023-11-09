@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme';
 import { ReactComponent as SvgAccount } from '../assets/account.svg';
-
+import { useNavigate } from 'react-router-dom';
 
 interface DropdownProps {
   options: string[];
 }
 
 const DropdownContainer = styled.div`
-  position: relative;
-  display: inline-block;
+  position: fixed;
+  bottom: 5rem;
 `;
 
 const DropdownButton = styled.button`
-  padding: 10px;
+  outline: none;
+  padding: 0;
   font-size: 16px;
   background-color: transparent;
   border: none;
@@ -22,28 +23,29 @@ const DropdownButton = styled.button`
 `;
 
 const DropdownList = styled.ul`
-  width: 8rem;
-  bottom: 100%;
+  min-width: 8rem;
+  position: absolute; // Change this line
+  top: auto;
+  bottom: 100%;  // Change this line
   left: 0;
-  margin-bottom: 5px;
+  margin-bottom: 2rem;
   padding: 0;
   list-style: none;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
 `;
 
 const DropdownItem = styled.li`
-  padding: 10px;
+  margin: 0 1rem;
   font-size: 14px;
   color: #333;
   cursor: pointer;
-  transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f5f5f5;
+    color: ${theme.colors.primary};
   }
 `;
-
 
 const UnloginStatus = styled.div`
   position: fixed;
@@ -97,11 +99,17 @@ interface UserInfo {
 
 
 const Account: React.FC = () => {
+  const navigate = useNavigate(); 
   const [user, setUser] = useState<UserInfo | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option: string) => {
     setIsOpen(false);
+    if (option === 'Log out') {
+      handleLogout();
+    } else if (option === 'Compose') {
+      navigate('/compose');
+    }
   };
 
   // 模拟用户登录
@@ -114,6 +122,7 @@ const Account: React.FC = () => {
 
   const handleLogout = () => {
     // 模拟用户登出
+    setUser(null)
   };
 
   const options = ['Compose', 'Log out']
