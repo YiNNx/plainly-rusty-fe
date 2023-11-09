@@ -53,6 +53,7 @@ export const PostMarkdownContent = styled.div`
   }
   
   h2 {
+    line-height: 1.5;
     font-size: 1.25rem;
     background-image: linear-gradient(45deg, ${theme.colors.secondary}, ${theme.colors.primary});
     transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
@@ -60,8 +61,7 @@ export const PostMarkdownContent = styled.div`
     padding: 0px 8px;
     /* border-radius: 4px; */
     display: inline-block;
-    margin-top: .8rem;
-    margin-bottom: 0.8rem;
+    margin: .8rem 0;
     /* border-left: 4px solid #4870ac; */
   }
 

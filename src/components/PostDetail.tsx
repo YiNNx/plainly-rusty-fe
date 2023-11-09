@@ -4,15 +4,15 @@ import { theme } from '../theme';
 import { PostMarkdownContent, WithSyntaxHighlighter } from './Markdown';
 
 const PostContainer = styled.div`
-  margin: 3rem 1rem 3rem 2rem;
+  margin: 2rem 1rem 3rem 2rem;
   max-width: 51vw;
 
 `;
 
 const PostTitle = styled.h2`
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: ${theme.colors.tertiary};
-  margin: .4rem 0;
+  margin: 1rem 0;
 `;
 
 
