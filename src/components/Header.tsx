@@ -17,9 +17,17 @@ export const HeaderContainer = styled.header`
     transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
     color: ${theme.colors.background};
     padding: 0 5px;
-    /* background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
+    &:hover {
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  h1 a {
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   a {
@@ -27,6 +35,7 @@ export const HeaderContainer = styled.header`
     font-weight: bold;
 
     &:hover {
+      color: ${theme.colors.tertiary};
       text-decoration: underline 1px;
       text-underline-offset: .4rem;
     }

@@ -11,6 +11,11 @@ const Post = styled.div`
   border-left: 2px solid ${theme.colors.secondary};
   
   &:hover {
+    border-left: 2px solid ${theme.colors.tertiary};
+    span {
+      color: ${theme.colors.primary};
+
+    }
     /* background-color: ${theme.colors.background}; */
     /* transform: scale(1.05); */
   /* border-left: 2px solid ${theme.colors.shadow}; */
@@ -18,7 +23,7 @@ const Post = styled.div`
   `;
 
 const PostTitle = styled.span`
-  color: #6e8dbd;
+  color: ${theme.colors.tertiary};
   font-size: 1.5rem;
   font-weight: bold;
   /* margin: 1rem; */
@@ -29,7 +34,7 @@ const PostTitle = styled.span`
 
 
 
-const PostTime = styled.span`
+const PostTime = styled.p`
   font-family: 'Cantarell';
   font-size: 0.875rem;
   color: #b2b2b2;
