@@ -1,23 +1,63 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Comment } from '../models/comment';
+import { ReactComponent as Send } from '../assets/send.svg'
+import { theme } from '../theme';
 
 // 评论发布组件
 const CommentForm = styled.form`
+    margin: 2rem 0;
+
+
+
+    textarea::placeholder {
+        color: ${theme.colors.grey};
+    }
+
 `;
 
 const CommentInput = styled.textarea`
-  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
+ border:0;
+ border-radius:1rem;
+ background-color:${theme.colors.block};
+ width: 85%;
+ height: 7rem;
+ padding: 1rem 1.5rem;
+ resize: none;
+     
+ font-size: .9rem;
+ 
+ &:focus {
+    outline: none;
+  }
 `;
 
+
+
 const CommentButton = styled.button`
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+    float: right;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 8%;
+
+
+
+
+    svg {
+        fill: ${theme.colors.secondary};
+        width: 1.75rem;
+    }
+
+    &:hover{
+        & svg {
+            fill: ${theme.colors.primary};
+        }
+    }
+
+
 `;
 
 interface CommentBoxProps {
@@ -47,13 +87,14 @@ const CommentBox: React.FC<CommentBoxProps> = ({ onCommentSubmit }) => {
 
     return (
         <CommentForm onSubmit={handleCommentSubmit}>
-            <h3>Add a Comment</h3>
-            <CommentInput
-                placeholder="Write your comment..."
-                value={comment}
-                onChange={handleCommentChange}
-            />
-            <CommentButton type="submit">Post Comment</CommentButton>
+            <div>
+                <CommentInput
+                    placeholder="Write your comment..."
+                    value={comment}
+                    onChange={handleCommentChange}
+                />
+                <CommentButton type="submit"><Send /></CommentButton>
+            </div >
         </CommentForm>
     );
 };

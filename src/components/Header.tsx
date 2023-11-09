@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
 
   h1 {
+    font-family: 'SourceHanSerifCN';
     font-size: 1.5rem;
     padding: 2rem 0;
   }
@@ -42,8 +43,9 @@ export const HeaderContainer = styled.header`
   }
 
   nav ul{
+    font-size: 1.125rem;
     list-style: none;
-    padding: 0;
+    padding: 0 .2rem;
     li{
       padding: 1rem 0;
     }

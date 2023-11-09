@@ -3,7 +3,6 @@ import { theme } from '../theme';
 
 
 export const PostTag = styled.span`
-  font-family: 'Cantarell';
   background-color: ${theme.colors.block};
   /* border: 1px solid ${theme.colors.primary}; */
   float: right;

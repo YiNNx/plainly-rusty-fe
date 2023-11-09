@@ -3,21 +3,15 @@ import styled from 'styled-components';
 import { theme } from '../theme';
 import { PostMarkdownContent, WithSyntaxHighlighter } from './Markdown';
 
-const PostContainer = styled.div`
-  margin: 2rem 1rem 3rem 2rem;
-  max-width: 51vw;
 
-`;
 
 const PostTitle = styled.h2`
   font-size: 1.5rem;
-  color: ${theme.colors.tertiary};
+  color: ${theme.colors.primary};
   margin: 1rem 0;
 `;
 
-
 const PostTag = styled.span`
-  font-family: 'Cantarell';
   background-color: ${theme.colors.block};
   color: ${theme.colors.primary};
   font-size: .9rem;
@@ -26,7 +20,6 @@ const PostTag = styled.span`
 `;
 
 const PostTime = styled.span`
-  font-family: 'Cantarell';
   font-size: 0.875rem;
   color: ${theme.colors.grey};
   float: right;
@@ -42,7 +35,7 @@ interface PostDetailProps {
 
 const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }) => {
   return (
-    <PostContainer>
+    <div>
       <PostTitle>{title}</PostTitle>
       <PostMarkdownContent>
         <WithSyntaxHighlighter content={content} />
@@ -51,7 +44,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }
         <PostTag>{tag}</PostTag>
         <PostTime>{time}</PostTime>
       </div>
-    </PostContainer>
+    </div>
   );
 };
 

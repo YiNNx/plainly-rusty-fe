@@ -13,7 +13,6 @@ export const PostMarkdownContent = styled.div`
   letter-spacing: 0px;
   word-break: break-word;
   word-wrap: break-word;
-  font-family: 'Cantarell','SourceHanSerifCN';
 
   p {
     padding-top: .2rem;

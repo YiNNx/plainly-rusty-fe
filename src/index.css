@@ -19,14 +19,14 @@
   src: url('assets/Cantarell-VF-fixed.otf');
 }
 
-body {
+body,textarea {
   /* background-color: #f6f8fa; */
   margin: 0;
   text-align: justify;
-  font-family: -apple-system, BlinkMacSystemFont, 'SourceHanSerifCN';
+  font-family: -apple-system, BlinkMacSystemFont, Cantarell,SourceHanSerifCN;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  color: #40464f;
 }
 
 code {

@@ -35,7 +35,6 @@ const PostTitle = styled.span`
 
 
 const PostTime = styled.p`
-  font-family: 'Cantarell';
   font-size: 0.875rem;
   color: #b2b2b2;
   /* float: right; */

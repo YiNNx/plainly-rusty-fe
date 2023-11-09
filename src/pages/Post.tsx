@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PostDetail from '../components/PostDetail';
 import PostComment from './Comment';
+import styled from 'styled-components';
+
+const PostContainer = styled.div`
+  margin: 2rem 1rem 3rem 2rem;
+  max-width: 51vw;
+
+`;
 
 const Post: React.FC = () => {
   const { id } = useParams(); // 通过useParams()获取帖子ID
@@ -15,7 +22,7 @@ const Post: React.FC = () => {
   };
 
   return (
-    <div>
+    <PostContainer>
       <PostDetail
         title={post.title}
         id={post.id}
@@ -23,7 +30,7 @@ const Post: React.FC = () => {
         time={post.time}
         tag={post.tag} />
       <PostComment />
-    </div>
+    </PostContainer>
   );
 };
 
