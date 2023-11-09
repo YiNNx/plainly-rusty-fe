@@ -10,6 +10,7 @@ export const theme = {
     shadow: '#c8d2e1',
     light: '#5bb3ff',
     grey: '#b2b2b2',
+    tertiary: '#6e8dbd',
     // 添加更多颜色变量
   },
 };

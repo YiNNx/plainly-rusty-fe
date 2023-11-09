@@ -7,25 +7,21 @@ import { PostTag } from './PostTag';
 const Post = styled.div`
 
   padding: 0rem 1.7rem;
-  margin: 3rem 5rem;
-  /* border-radius: 5px; */
-  /* transition: transform 0.2s; */
+  margin: 3rem 1rem 3rem 2rem;
   border-left: 2px solid ${theme.colors.secondary};
-  
   
   &:hover {
     /* background-color: ${theme.colors.background}; */
     /* transform: scale(1.05); */
-  border-left: 2px solid ${theme.colors.shadow};
+  /* border-left: 2px solid ${theme.colors.shadow}; */
   }
   `;
 
 const PostTitle = styled.span`
-  color: ${theme.colors.primary};
-  font-size: 1.25rem;
+  color: #6e8dbd;
+  font-size: 1.5rem;
   font-weight: bold;
   /* margin: 1rem; */
-  
   &:hover {
 
   }
@@ -41,8 +37,10 @@ const PostTime = styled.span`
 `;
 
 const PostContent = styled.p`
+  line-height: 1.6rem;
   font-size: 1rem;
   color: ${theme.colors.text};
+  margin: .5rem 0;
 `;
 
 

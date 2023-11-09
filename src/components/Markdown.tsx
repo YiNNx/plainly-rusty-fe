@@ -1,7 +1,10 @@
 import { theme } from '../theme';
 import styled from 'styled-components';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ReactMarkdown from 'react-markdown';
 
-const PostMarkdownContent = styled.div`
+export const PostMarkdownContent = styled.div`
   font-size: 1rem;
   color: ${theme.colors.text};
   margin-bottom: 5rem;
@@ -29,7 +32,7 @@ const PostMarkdownContent = styled.div`
   }
 
   strong {
-    color: ${theme.colors.primary};
+    color: ${theme.colors.tertiary};
   }
 
   mark {
@@ -51,18 +54,18 @@ const PostMarkdownContent = styled.div`
   
   h2 {
     font-size: 1.25rem;
-    /* background-color: #4870ac; */
-    /* color: #ffffff; */
-    line-height: 1;
-    padding: 0 8px;
+    background-image: linear-gradient(45deg, ${theme.colors.secondary}, ${theme.colors.primary});
+    transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
+    color: ${theme.colors.background};
+    padding: 0px 8px;
     /* border-radius: 4px; */
     display: inline-block;
-    margin-top: 1.6rem;
+    margin-top: .8rem;
     margin-bottom: 0.8rem;
-    border-left: 4px solid #4870ac;
+    /* border-left: 4px solid #4870ac; */
   }
 
-  /* h2 a {
+  h2 a {
     text-decoration: underline;
     color: ${theme.colors.background};
     border-bottom: 0;
@@ -76,16 +79,18 @@ const PostMarkdownContent = styled.div`
 
   h2 code {
     color: ${theme.colors.background};
-    background-color: ${theme.colors.primary};
-  } */
+  }
 
   h3 {
+    line-height: 1.2;
     font-size: 1.1rem;
-    margin: 1em 0 1em;
+    margin: 1.8rem 0 1rem;
+    border-left: 3px solid ${theme.colors.secondary};
+    padding: 0 0.7rem;
   }
 
   h4,h5,h6 {
-    font-weight: normal;
+    color: ${theme.colors.tertiary};
     font-size: 1rem;
     margin: 0.8em 0 0.8em;
   }
@@ -135,10 +140,9 @@ blockquote {
     display: block;
     font-size: .9em;
     overflow: auto;
-    border-left: 3px solid ${theme.colors.primary};
+    border-left: 3px solid ${theme.colors.secondary};
     padding: 15px 30px 15px 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin: 20px 0;
     background: ${theme.colors.block};
 }
 
@@ -161,4 +165,35 @@ img {
 }
 `;
 
-export default PostMarkdownContent;
+export const WithSyntaxHighlighter = ({ content }: { content: any }) => {
+  return (
+    <ReactMarkdown components={{
+      code({ node, className, children, ...props }) {
+        const match = /language-(\w+)/.exec(className || '')
+        return match ? (
+          <SyntaxHighlighter
+            // @ts-ignore
+            style={nord}
+            language={match[1]}
+            customStyle={{
+              // background: "#f6f8fa",
+              // lineHeight: "1rem",
+              borderRadius: ".4rem",
+            }}
+            // showLineNumbers={true}
+            PreTag="div" {...props}
+          >
+            {String(children).replace(/\n$/, '')}
+          </SyntaxHighlighter>
+        ) : (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        )
+      }
+    }}>
+      {content}
+    </ReactMarkdown>
+  );
+};
+

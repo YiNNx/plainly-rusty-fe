@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { theme } from '../theme';
+
 export const PageContainer = styled.div`
   display: flex;
-  flex-direction: row-reverse; /* 反转主轴方向，将Header放在右侧 */
+  flex-direction: row-reverse;
 `;
 
 export const MainContent = styled.div`

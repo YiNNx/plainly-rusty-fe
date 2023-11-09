@@ -4,12 +4,22 @@ import { theme } from '../theme';
 import Account from './Account';
 
 
-const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header`
   align-items: center;
 
   h1 {
     font-size: 1.5rem;
     padding: 2rem 0;
+  }
+
+  h1 a span {
+    background-image: linear-gradient(45deg, ${theme.colors.secondary}, ${theme.colors.primary});
+    transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
+    color: ${theme.colors.background};
+    padding: 0 5px;
+    /* background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
   }
 
   a {
@@ -37,7 +47,7 @@ const HeaderContainer = styled.header`
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
-      <h1><a href="/">just-plain.fun</a></h1>
+      <h1><a href="/"><span>just-plain.fun</span></a></h1>
       <nav>
         <ul>
           <li><a href="/about">About</a></li>
