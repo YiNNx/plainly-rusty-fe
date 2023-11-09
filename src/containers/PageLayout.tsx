@@ -5,7 +5,7 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column; /* 修改为垂直方向在移动端显示 */
   
-  @media (min-width: 768px) {
+  @media (min-width: 850px) {
     flex-direction: row-reverse; /* 在宽度大于等于768px时恢复水平方向显示 */
   }
 `;
@@ -16,8 +16,8 @@ export const MainContent = styled.div`
   margin-right: 20vw;
   max-width: 70vw;
   
-  @media (max-width: 768px) {
-    padding: 0; /* 在小于768px的屏幕宽度时调整样式 */
+  @media (max-width: 850px) {
+    padding: 2.2rem 0; /* 在小于768px的屏幕宽度时调整样式 */
     margin-right: 0;
     max-width: none;
     max-width: 100vw;
@@ -34,7 +34,10 @@ export const Sidebar = styled.div`
   background-color: ${theme.colors.background}; 
   border-left: 2px solid #f5f5f5;
   
-  @media (max-width: 767px) {
+  @media (max-width: 850px) {
+    right: 0;
+    top: 0;
+    padding: 0;
     height: 1rem;
     width: 100%;
     border-left: none; /* 移动端去掉左边框 */

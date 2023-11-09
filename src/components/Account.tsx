@@ -4,6 +4,78 @@ import { theme } from '../theme';
 import { ReactComponent as SvgAccount } from '../assets/account.svg';
 import { useNavigate } from 'react-router-dom';
 
+const UnloginStatus = styled.div`
+  position: fixed;
+  bottom: 5rem;
+
+  &:hover {
+    span {
+      visibility: visible;
+    }
+    & svg {
+      fill: ${theme.colors.primary};
+    }
+  }
+
+  svg {
+    fill: ${theme.colors.secondary};
+    vertical-align: middle;
+    width: 1.75rem;
+  }
+
+  span {
+    padding: 0.6rem;
+    color: ${theme.colors.primary};
+    visibility: hidden;
+  }
+
+  @media (max-width: 850px) {
+    position: relative;
+    bottom: auto;
+
+    span {
+    padding: 0.6rem;
+    color: ${theme.colors.background};
+    font-weight: bold;
+    visibility: visible;
+  }
+  svg {
+    width: 0;
+  }
+  }
+`;
+
+const LoginStatus = styled.div`
+  position: fixed;
+  bottom: 5rem;
+
+  span {
+    padding: 0.3rem;
+    color: ${theme.colors.tertiary};
+    font-weight: bold;
+  }
+  
+  img {
+    width: 2.125rem;
+    border-radius: 50%;
+    border: 1px solid rgba(31,35,40,0.15);
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 850px) {
+    position: relative;
+    bottom: auto;
+
+    span {
+    visibility: hidden;
+  }
+  img {
+    visibility: hidden;
+  }
+  }
+`;
+
 interface DropdownProps {
   options: string[];
 }
@@ -44,51 +116,6 @@ const DropdownItem = styled.li`
 
   &:hover {
     color: ${theme.colors.primary};
-  }
-`;
-
-const UnloginStatus = styled.div`
-  position: fixed;
-  bottom: 5rem;
-
-  &:hover {
-    span {
-      visibility: visible;
-    }
-    & svg {
-      fill: ${theme.colors.primary};
-    }
-  }
-
-  svg {
-    fill: ${theme.colors.secondary};
-    vertical-align: middle;
-    width: 1.75rem;
-  }
-
-  span {
-    padding: 0.6rem;
-    color: ${theme.colors.primary};
-    visibility: hidden;
-  }
-`;
-
-const LoginStatus = styled.div`
-  position: fixed;
-  bottom: 5rem;
-
-  span {
-    padding: 0.3rem;
-    color: ${theme.colors.tertiary};
-    font-weight: bold;
-  }
-  
-  img {
-    width: 2.125rem;
-    border-radius: 50%;
-    border: 1px solid rgba(31,35,40,0.15);
-    vertical-align: middle;
-    margin-right: 0.5rem;
   }
 `;
 

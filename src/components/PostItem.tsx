@@ -20,6 +20,15 @@ const Post = styled.div`
     /* transform: scale(1.05); */
   /* border-left: 2px solid ${theme.colors.shadow}; */
   }
+
+  @media (max-width: 850px) {
+    margin: 3rem 1.5rem;
+    padding: 0rem 1.1rem;
+    border-left: none;
+    &:hover {
+    border-left: none;
+    }
+  }
   `;
 
 const PostTitle = styled.span`
