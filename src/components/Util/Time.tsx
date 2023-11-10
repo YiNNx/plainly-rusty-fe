@@ -18,5 +18,7 @@ export const TimePostDetail = styled(Time)`
 export const TimePostItem = styled(Time)`
     @media (max-width: 850px) {
         color:  ${theme.colors.tertiary};
+        margin: 1rem 0;
+        font-size: .925rem;
     }
 `

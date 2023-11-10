@@ -46,3 +46,7 @@ a {
 ::-webkit-scrollbar {
   width: .8rem;
 }
+
+::selection {
+  background: #c8d2e183;
+}

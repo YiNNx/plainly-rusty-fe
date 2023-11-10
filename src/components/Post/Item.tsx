@@ -20,7 +20,7 @@ const PostContent = styled.p`
     line-height: 1.6rem;
     font-size: 1rem;
     color: ${theme.colors.text};
-    margin: .4rem 0;
+    margin: .4rem 0 .6rem 0;
 `;
 
 const PostItemContainer = styled.div`
