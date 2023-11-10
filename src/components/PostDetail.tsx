@@ -6,18 +6,25 @@ import { ReactComponent as IconEdit } from '../assets/edit.svg'
 import { ReactComponent as IconDelete } from '../assets/delete.svg'
 
 const PostTitle = styled.h2`
+  font-family: 'SourceHanSerifCN';
   font-size: 1.5rem;
   color: ${theme.colors.primary};
-  margin: 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  
+  span {
+    flex: 1; /* Take up remaining space */
+  }
 
-  svg{
-    float: right;
+  svg {
     fill: ${theme.colors.secondary};
     width: 1.3rem;
-    padding-left: .8rem;
+    margin-left: 0.8rem;
 
-    &:hover{
-    fill: ${theme.colors.primary};
+    &:hover {
+      fill: ${theme.colors.primary};
     }
   }
 `;
@@ -49,7 +56,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }
     <div>
       <div>
         <PostTitle>
-          {title}
+          <span>{title}</span>
           <IconDelete /><IconEdit />
         </PostTitle>
       </div>

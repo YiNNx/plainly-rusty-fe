@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme';
 import Account from './Account';
+import { ReactComponent as SvgMemu } from '../assets/memu.svg';
 
 export const HeaderContainer = styled.header`
   align-items: center;
@@ -31,7 +32,6 @@ export const HeaderContainer = styled.header`
   }
 
   a {
-    color: ${theme.colors.primary};
     font-weight: bold;
 
     &:hover {
@@ -69,6 +69,12 @@ export const HeaderContainer = styled.header`
       font-size: 1.2rem;
     }
 
+    a {
+      &:hover {
+        color: ${theme.colors.background};
+      }
+  }
+
     nav {
       ul {
         font-size: 1rem;
@@ -87,16 +93,23 @@ export const HeaderContainer = styled.header`
       -webkit-background-clip: unset;
       -webkit-text-fill-color: unset;
       color: ${theme.colors.background};
-      &:hover {
-        text-decoration: none;
-      }
+        &:hover {
+          background-image: none;
+        }
     }
 
     .menu-icon {
       display: block; /* 在小屏幕上显示汉堡菜单图标 */
       color: ${theme.colors.background};
       position: absolute;
-      right: 2rem;
+      right: 1.5rem;
+      
+      svg {
+        height: 1rem;
+        width: 1rem;
+        padding: .5rem  .5rem .2rem .5rem;
+        fill: ${theme.colors.block};
+      }
     }
 
     nav ul {
@@ -116,6 +129,7 @@ export const HeaderContainer = styled.header`
         background-image: linear-gradient(50deg, ${theme.colors.shadow}, ${theme.colors.primary});
         color: ${theme.colors.text};
         padding-bottom: .5rem;
+        box-shadow: 0px 5px 5px ${theme.colors.shadow};
       }
     }
   }
@@ -129,7 +143,9 @@ const Header: React.FC = () => {
       <div>
         <h1><a href="/"><span>just-plain.fun</span></a></h1>
       </div>
-      <div className="menu-icon" onClick={() => setNavActive(!isNavActive)}>☰</div>
+      <div className="menu-icon" onClick={() => setNavActive(!isNavActive)}>
+        <SvgMemu />
+      </div>
       <nav className={isNavActive ? 'active' : ''}>
         <ul>
           <li><a href="/about">About</a></li>

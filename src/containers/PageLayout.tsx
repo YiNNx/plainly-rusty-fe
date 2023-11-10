@@ -17,7 +17,7 @@ export const MainContent = styled.div`
   max-width: 70vw;
   
   @media (max-width: 850px) {
-    padding: 2.2rem 0; /* 在小于768px的屏幕宽度时调整样式 */
+    padding: 2.8rem 0; /* 在小于768px的屏幕宽度时调整样式 */
     margin-right: 0;
     max-width: none;
     max-width: 100vw;

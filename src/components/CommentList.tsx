@@ -52,8 +52,6 @@ const CommentTime = styled.span`
   font-size: 0.8rem;
   color: #b2b2b2;
   padding: 0 1rem;
-  /* float: right; */
-  /* float: right; */
 `;
 
 const CommentContent = styled.p`

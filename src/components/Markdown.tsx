@@ -31,7 +31,8 @@ export const PostMarkdownContent = styled.div`
   }
 
   strong {
-    color: ${theme.colors.tertiary};
+    color: ${theme.colors.primary};
+    font-family: SourceHanSerifCN;
   }
 
   mark {
@@ -42,6 +43,7 @@ export const PostMarkdownContent = styled.div`
 
   h1,h2,h3,h4,h5,h6 {
     color: ${theme.colors.primary};
+    font-family: 'SourceHanSerifCN';
     padding: 0;
   }
 
@@ -59,7 +61,7 @@ export const PostMarkdownContent = styled.div`
     padding: 0 .5rem;
     /* border-radius: 8px; */
     display: inline-block;
-    margin: .8rem 0;
+    margin: 1rem 0;
     /* border-left: 4px solid #4870ac; */
   }
 
@@ -77,12 +79,13 @@ export const PostMarkdownContent = styled.div`
 
   h2 code {
     color: ${theme.colors.background};
+    background-color: transparent;
   }
 
   h3 {
     line-height: 1.2;
     font-size: 1.1rem;
-    margin: 1.8rem 0 1rem;
+    margin: .8rem 0;
     border-left: 3px solid ${theme.colors.secondary};
     padding: 0 0.7rem;
   }
@@ -94,7 +97,8 @@ export const PostMarkdownContent = styled.div`
   }
 
   li {
-    margin: 0.4rem 0;
+    margin: 0.5rem 0;
+    line-height: 1.8rem;
 }
 
 ul, ol {
@@ -136,7 +140,6 @@ li section {
 
 blockquote {
     display: block;
-    font-size: .9em;
     overflow: auto;
     border-left: 3px solid ${theme.colors.secondary};
     padding: 0.9rem 1.875rem .9rem 1.25rem;
@@ -145,10 +148,26 @@ blockquote {
 }
 
 code {
+    font-family: 'JetBrainsMono';
+    color: ${theme.colors.primary};
+    font-size: 94%;
+    font-weight: normal;
+    word-wrap: break-word;
+    padding: 2px 4px 2px;
+    border-radius: 3px;
+    margin: 2px;
+    background-color: ${theme.colors.block};
+    word-break: break-all;
+}
+
+pre code {
     font-size: .8rem;
     font-family: 'JetBrainsMono';
 }
 
+pre {
+  padding: .1rem 0;
+}
 
 img {
     max-width: 20rem;
@@ -160,6 +179,13 @@ img {
     border: 0;
     border-top: 2px solid #eef2f5;
     border-radius: 2px;
+}
+
+@media (max-width: 850px) {
+  h2 {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
 }
 `;
 

@@ -23,7 +23,7 @@ body,textarea {
   background-color: #fcfdff;
   margin: 0;
   text-align: justify;
-  font-family: -apple-system, BlinkMacSystemFont, Cantarell,SourceHanSerifCN;
+  font-family: Cantarell,SourceHanSerifCN;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #40464f;

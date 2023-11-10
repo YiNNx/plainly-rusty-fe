@@ -4,6 +4,17 @@ import styled from 'styled-components';
 import { theme } from '../theme';
 import { PostTag } from './PostTag';
 
+const PostTitle = styled.span`
+  font-family: 'SourceHanSerifCN';
+  color: ${theme.colors.tertiary};
+  font-size: 1.35rem;
+  font-weight: bold;
+  /* margin: 1rem; */
+  @media (max-width: 850px) {
+    color:  ${theme.colors.primary};
+  }
+`;
+
 const Post = styled.div`
 
   padding: 0rem 1.7rem;
@@ -12,7 +23,7 @@ const Post = styled.div`
   
   &:hover {
     border-left: 2px solid ${theme.colors.tertiary};
-    span {
+    ${PostTitle} {
       color: ${theme.colors.primary};
 
     }
@@ -22,7 +33,7 @@ const Post = styled.div`
   }
 
   @media (max-width: 850px) {
-    margin: 3rem 1.5rem;
+    margin: 2.75rem 1.5rem;
     padding: 0rem 1.1rem;
     border-left: none;
     &:hover {
@@ -31,22 +42,13 @@ const Post = styled.div`
   }
   `;
 
-const PostTitle = styled.span`
-  color: ${theme.colors.tertiary};
-  font-size: 1.35rem;
-  font-weight: bold;
-  /* margin: 1rem; */
-  &:hover {
 
-  }
-`;
-
-
-
-const PostTime = styled.p`
+const PostTime = styled.span`
   font-size: 0.875rem;
-  color: #b2b2b2;
-  /* float: right; */
+  color: ${theme.colors.grey};
+  @media (max-width: 850px) {
+    color:  ${theme.colors.tertiary};
+  }
 `;
 
 const PostContent = styled.p`
@@ -55,6 +57,29 @@ const PostContent = styled.p`
   color: ${theme.colors.text};
   margin: .4rem 0;
 `;
+
+
+const ResponsiveForPC = styled.div`
+    @media (max-width: 850px) {
+      ${PostTag} {
+        visibility: hidden;
+    }
+  }
+`
+
+const ResponsiveForMobile = styled.div`
+      ${PostTag} {
+        visibility: hidden;
+    }
+   @media (max-width: 850px) {
+      ${PostTag} {
+        visibility: visible;
+        margin: 0.1rem 0;
+  color: ${theme.colors.secondary};
+
+    }
+  }
+`
 
 
 interface PostItemProps {
@@ -67,16 +92,19 @@ interface PostItemProps {
 
 const PostItem: React.FC<PostItemProps> = ({ title, content, id, tag, time }) => {
   return (
-    <Link to={`/post/${id}`}>
-      <Post>
-        <div>
+    <Post>
+      <Link to={`/post/${id}`}>
+        <ResponsiveForPC>
           <PostTitle>{title}</PostTitle>
           <PostTag>{tag}</PostTag>
-        </div>
+        </ResponsiveForPC>
         <PostContent>{content}</PostContent>
-        <PostTime>{time}</PostTime>
-      </Post>
-    </Link>
+        <ResponsiveForMobile>
+          <PostTime>{time}</PostTime>
+          <PostTag>{tag}</PostTag>
+        </ResponsiveForMobile>
+      </Link>
+    </Post>
   );
 };
 
