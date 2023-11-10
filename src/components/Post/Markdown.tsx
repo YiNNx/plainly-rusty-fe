@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export const PostMarkdownContent = styled.div`
     font-size: 1rem;
@@ -97,8 +98,8 @@ export const PostMarkdownContent = styled.div`
     }
 
     li {
-        margin: 0.5rem 0;
-        line-height: 1.8rem;
+        margin: 0.4rem 0;
+        line-height: 1.6rem;
     }
 
     ul, ol {
@@ -181,6 +182,39 @@ export const PostMarkdownContent = styled.div`
         border-radius: 2px;
     }
 
+    table {
+        display: table;
+        text-align: justify;
+        overflow-x: auto;
+        border-collapse: collapse;
+        border-spacing: 0px;
+        font-size: .9rem;
+        margin: .8rem .8rem 1.4rem .8rem;
+    }
+
+    table tr {
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    table tr th,
+    table tr td {
+        border: 1px solid #d9dfe4;
+        padding: .4rem 1rem;
+        text-align: justify;
+    }
+
+    table tr th {
+        font-family: SourceHanSerifCN;
+        text-align: center;
+        font-weight: bold;
+        color: ${theme.colors.primary};
+    }
+
+    table td {
+        min-width: 32px;
+    }
+
     @media (max-width: 850px) {
     h2 {
         font-size: 1.2rem;
@@ -191,28 +225,31 @@ export const PostMarkdownContent = styled.div`
 
 export const WithSyntaxHighlighter = ({ content }: { content: any }) => {
     return (
-        <ReactMarkdown components={{
-            code({ node, className, children, ...props }) {
-                const match = /language-(\w+)/.exec(className || '')
-                return match ? (
-                    <SyntaxHighlighter
-                        // @ts-ignore
-                        style={nord}
-                        language={match[1]}
-                        customStyle={{
-                            borderRadius: ".4rem",
-                        }}
-                        PreTag="div" {...props}
-                    >
-                        {String(children).replace(/\n$/, '')}
-                    </SyntaxHighlighter>
-                ) : (
-                    <code className={className} {...props}>
-                        {children}
-                    </code>
-                )
-            }
-        }}>
+        <ReactMarkdown
+            components={{
+                code({ node, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || '')
+                    return match ? (
+                        <SyntaxHighlighter
+                            // @ts-ignore
+                            style={nord}
+                            language={match[1]}
+                            customStyle={{
+                                borderRadius: ".4rem",
+                            }}
+                            PreTag="div" {...props}
+                        >
+                            {String(children).replace(/\n$/, '')}
+                        </SyntaxHighlighter>
+                    ) : (
+                        <code className={className} {...props}>
+                            {children}
+                        </code>
+                    )
+                }
+            }}
+            remarkPlugins={[remarkGfm]}
+        >
             {content}
         </ReactMarkdown>
     );
