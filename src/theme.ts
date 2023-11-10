@@ -12,6 +12,5 @@ export const theme = {
     grey: '#b2b2b2',
     lightgrey: '#eef2f5',
     tertiary: '#6e8dbd',
-    // 添加更多颜色变量
   },
 };

@@ -1,10 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import Editor from '../components/Editor';
+import Editor from '../components/Editor/Editor';
+import { EditorContainer } from '../containers/Cantainers';
 
-const EditorContainer = styled.div`
-    width: 60vw;
-`
 
 const Compose: React.FC = () => {
     return (

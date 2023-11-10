@@ -1,22 +1,22 @@
 @font-face {
   font-family: "JetBrainsMono";
-  src: url('assets/JetBrainsMono-Regular.ttf');
+  src: url('assets/font/JetBrainsMono-Regular.ttf');
 }
 
 @font-face {
   font-family: "SourceHanSerifCN";
-  src: url('assets/SourceHanSerifCN-Regular.otf');
+  src: url('assets/font/SourceHanSerifCN-Regular.otf');
 }
 
 @font-face {
   font-family: "SourceHanSerifCN";
-  src: url('assets/SourceHanSerifCN-Bold.otf');
+  src: url('assets/font/SourceHanSerifCN-Bold.otf');
   font-weight: bold;
 }
 
 @font-face {
   font-family: "Cantarell";
-  src: url('assets/Cantarell-VF-fixed.otf');
+  src: url('assets/font/Cantarell-VF-fixed.otf');
 }
 
 body,textarea {

@@ -3,10 +3,10 @@ import { theme } from '../theme';
 
 export const PageContainer = styled.div`
   display: flex;
-  flex-direction: column; /* 修改为垂直方向在移动端显示 */
+  flex-direction: column;
   
   @media (min-width: 850px) {
-    flex-direction: row-reverse; /* 在宽度大于等于768px时恢复水平方向显示 */
+    flex-direction: row-reverse;
   }
 `;
 
@@ -17,7 +17,7 @@ export const MainContent = styled.div`
   max-width: 70vw;
   
   @media (max-width: 850px) {
-    padding: 2.8rem 0; /* 在小于768px的屏幕宽度时调整样式 */
+    padding: 2.8rem 0;
     margin-right: 0;
     max-width: none;
     max-width: 100vw;

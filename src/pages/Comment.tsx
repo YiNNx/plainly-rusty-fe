@@ -1,12 +1,8 @@
-import CommentList from '../components/CommentList';
-import CommentBox from '../components/CommentBox';
+import CommentList from '../components/Comment/List';
+import CommentBox from '../components/Comment/Box';
 import { Comment } from '../models/comment';
 import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const PostCommentContainer = styled.div`
-  margin: 4rem 0;
-`;
+import { PostCommentContainer } from '../containers/Cantainers';
 
 const PostComment: React.FC = () => {
     const [comments, setComments] = useState<Comment[]>([

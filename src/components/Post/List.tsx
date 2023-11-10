@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from './PostItem';
+import Post from './Item';
 import styled from 'styled-components';
 
 const PostListContainer = styled.div`

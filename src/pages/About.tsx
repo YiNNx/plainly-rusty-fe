@@ -1,11 +1,6 @@
 import React from 'react';
-import PostDetail from '../components/PostDetail';
-import styled from 'styled-components';
-
-const PostContainer = styled.div`
-  margin: 2rem 1rem 3rem 2rem;
-  max-width: 51vw;
-`;
+import PostDetail from '../components/Post/Detail';
+import { PostContainer } from '../containers/Cantainers';
 
 const About: React.FC = () => {
     const post = {

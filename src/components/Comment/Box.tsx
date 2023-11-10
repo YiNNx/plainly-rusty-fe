@@ -1,40 +1,34 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Comment } from '../models/comment';
-import { ReactComponent as Send } from '../assets/send.svg'
-import { theme } from '../theme';
+import { Comment } from '../../models/comment';
+import { ReactComponent as Send } from '../../assets/svg/send.svg'
+import { theme } from '../../theme';
 
 // 评论发布组件
 const CommentForm = styled.form`
     margin: 2rem 0;
 
-
-
     textarea::placeholder {
         color: ${theme.colors.grey};
     }
-
 `;
 
 const CommentInput = styled.textarea`
-  padding: 0.625;
-  margin-bottom: 0.625rem;
- border:0;
- border-radius:1rem;
- background-color:${theme.colors.block};
- width: 85%;
- height: 7rem;
- padding: 1rem 1.5rem;
- resize: none;
-     
- font-size: .9rem;
- 
- &:focus {
-    outline: none;
-  }
+    padding: 0.625;
+    margin-bottom: 0.625rem;
+    border:0;
+    border-radius:1rem;
+    background-color:${theme.colors.block};
+    width: 85%;
+    height: 7rem;
+    padding: 1rem 1.5rem;
+    resize: none;
+    font-size: .9rem;
+    
+    &:focus {
+        outline: none;
+    }
 `;
-
-
 
 const CommentButton = styled.button`
     float: right;
@@ -52,8 +46,6 @@ const CommentButton = styled.button`
             fill: ${theme.colors.primary};
         }
     }
-
-
 `;
 
 interface CommentBoxProps {

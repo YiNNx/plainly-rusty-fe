@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
+import Bar from './components/Bar/Bar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Post from './pages/Post'; // 新建一个Post页面
@@ -14,7 +14,7 @@ const App: React.FC = () => {
       <PageContainer>
 
         <Sidebar>
-          <Header />
+          <Bar />
         </Sidebar>
 
         <MainContent>

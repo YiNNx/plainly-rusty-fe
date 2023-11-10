@@ -1,21 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import PostDetail from '../components/PostDetail';
+import PostDetail from '../components/Post/Detail';
 import PostComment from './Comment';
-import styled from 'styled-components';
-
-const PostContainer = styled.div`
-  margin: 2rem 1rem 3rem 2rem;
-  max-width: 51vw;
-
-  @media (max-width: 850px) {
-    margin: 2rem;
-    max-width: none;
-  }
-`;
+import { PostContainer } from '../containers/Cantainers';
 
 const Post: React.FC = () => {
-  const { id } = useParams(); // 通过useParams()获取帖子ID
+  const { id } = useParams(); 
 
   const post = {
     id: '1',
