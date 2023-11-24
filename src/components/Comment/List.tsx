@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Comment } from '../../models/comment';
 import { theme } from '../../theme';
@@ -23,7 +24,7 @@ const CommentsContainer = styled.div`
 
     svg{
         float: right;
-        fill: ${theme.colors.grey};
+        fill: ${theme.colors.secondary};
         width: 1rem;
         padding-left: .8rem;
 
@@ -38,7 +39,7 @@ const CommentItem = styled.div`
     padding: .2rem 1rem;
 `;
 
-const CommentNickname = styled.span`
+const CommentNickname = styled.a`
     font-family: JetBrainsMono;
     color: ${theme.colors.tertiary};
     font-size: .9rem;
@@ -49,6 +50,14 @@ const CommentContent = styled.p`
     font-size: .9rem;
     color: ${theme.colors.text};
     margin: .5rem 0;
+`;
+
+export const Loading = styled.button`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: .6rem .8rem 0rem;
+    color: ${theme.colors.primary};
 `;
 
 interface CommentListProps {
@@ -63,8 +72,8 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
                 <CommentItem key={comment.id}>
                     <CommentContent>
                         <div>
-                            <CommentNickname>{comment.nickname}</CommentNickname>
-                            <TimeComment>{comment.time}</TimeComment>
+                            <CommentNickname target="_blank" href={`https://github.com/${comment.githubName}`}>{comment.githubName}</CommentNickname>
+                            <TimeComment>{comment.time.split(' ')[0]}</TimeComment>
                             <IconDelete />
                         </div>
                         <div>{comment.content}</div>

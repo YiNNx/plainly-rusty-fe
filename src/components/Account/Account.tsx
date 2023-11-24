@@ -9,6 +9,11 @@ import { DropdownButton, DropdownContainer, DropdownItem, DropdownList } from '.
 const AccountContainer = styled.div`
     position: fixed;
     bottom: 5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    &:hover{
+        cursor: pointer;
+    }
     @media (max-width: 850px) {
         position: relative;
         bottom: auto;
@@ -20,20 +25,23 @@ const AccountContainer = styled.div`
 
 const AccountUnloggedin = styled(AccountContainer)`
     svg {
-        fill: ${theme.colors.secondary};
+        fill: ${theme.colors.tertiary};
         vertical-align: middle;
-        width: 1.75rem;
+        width: 2.1rem;
     }
 
     span {
         padding: 0.6rem;
         color: ${theme.colors.primary};
         visibility: hidden;
+        
     }
 
     &:hover {
         span {
             visibility: visible;
+            text-decoration: underline 1px;
+            text-underline-offset: .4rem;
         }
         & svg {
             fill: ${theme.colors.primary};
@@ -44,7 +52,6 @@ const AccountUnloggedin = styled(AccountContainer)`
         span {
             padding: 0.6rem;
             color: ${theme.colors.background};
-            font-weight: bold;
             visibility: visible;
         }
         svg {
@@ -61,7 +68,7 @@ const AccountLoggedin = styled(AccountContainer)`
     }
     
     img {
-        width: 2.125rem;
+        width: 2.6rem;
         border-radius: 50%;
         border: 1px solid rgba(31,35,40,0.15);
         vertical-align: middle;
@@ -109,7 +116,7 @@ const Account: React.FC = () => {
                     <DropdownButton onClick={() => setIsOpen(!isOpen)}>
                         <AccountLoggedin>
                             <img src={user.avatar} alt="User Avatar" />
-                            <span>{user.nickname}</span>
+                            {/* <span>{user.nickname}</span> */}
                         </AccountLoggedin>
                     </DropdownButton>
                     {isOpen && (

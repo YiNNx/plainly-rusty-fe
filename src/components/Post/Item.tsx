@@ -7,8 +7,8 @@ import { TagPostItem } from '../Util/Tag';
 
 const PostTitle = styled.span`
     font-family: SourceHanSerifCN;
-    color: ${theme.colors.tertiary};
-    font-size: 1.35rem;
+    color: ${theme.colors.primary};
+    font-size: 1.7rem;
     font-weight: bold;
 
     @media (max-width: 850px) {
@@ -17,22 +17,22 @@ const PostTitle = styled.span`
 `;
 
 const PostContent = styled.p`
-    line-height: 1.6rem;
-    font-size: 1rem;
+    line-height: 1.7rem;
+    font-size: 1.05rem;
     color: ${theme.colors.text};
-    margin: .4rem 0 .6rem 0;
+    margin: .8rem 0 .7rem 0;
 `;
 
 const PostItemContainer = styled.div`
     padding: 0rem 1.7rem;
-    margin: 3rem 1rem 3rem 2rem;
-    border-left: 2px solid ${theme.colors.secondary};
+    margin: 2rem 0 2.8rem 0;
+    border-left: 2.5px solid ${theme.colors.secondary};
 
     &:hover {
-        border-left: 2px solid ${theme.colors.tertiary};
-        ${PostTitle} {
-            color: ${theme.colors.primary};
-        }
+        /* border-left: 2px solid ${theme.colors.secondary}; */
+        /* ${PostTitle} {
+            color: ${theme.colors.tertiary};
+        } */
     }
 
     @media (max-width: 850px) {
@@ -69,23 +69,28 @@ const ResponsiveForMobile = styled.div`
 interface PostItemProps {
     title: string;
     id: string;
-    tag: string;
+    tags: string[];
     content: string;
     time: string;
 }
 
-const PostItem: React.FC<PostItemProps> = ({ title, content, id, tag, time }) => {
+
+const PostItem: React.FC<PostItemProps> = ({ title, content, id, tags, time }) => {
     return (
         <PostItemContainer>
             <Link to={`/post/${id}`}>
                 <ResponsiveForPC>
                     <PostTitle>{title}</PostTitle>
-                    <TagPostItem>{tag}</TagPostItem>
+                    {tags.map((tag: any, index: any) => (
+                        <TagPostItem key={index}>{tag}</TagPostItem>
+                    ))}
                 </ResponsiveForPC>
                 <PostContent>{content}</PostContent>
                 <ResponsiveForMobile>
-                    <TimePostItem>{time}</TimePostItem>
-                    <TagPostItem>{tag}</TagPostItem>
+                    <TimePostItem>{time.split(' ')[0]}</TimePostItem>
+                    {tags.map((tag: any, index: any) => (
+                        <TagPostItem key={index}>{tag}</TagPostItem>
+                    ))}
                 </ResponsiveForMobile>
             </Link>
         </PostItemContainer>

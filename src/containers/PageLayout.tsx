@@ -12,8 +12,8 @@ export const PageContainer = styled.div`
 
 export const MainContent = styled.div`
   flex: 1;
-  padding: 4rem 7vw 4rem 17vw; 
-  margin-right: 20vw;
+  padding: 5.5rem 10vw 4rem 17vw; 
+  margin-right: 19vw;
   max-width: 70vw;
   
   @media (max-width: 850px) {
@@ -25,8 +25,8 @@ export const MainContent = styled.div`
 `;
 
 export const Sidebar = styled.div`
-  padding: 4rem 5vw 4rem 3vw;
-  width: 13vw; 
+  padding: 4rem 2vw 4rem 3vw;
+  width: 17vw; 
   position: fixed;
   right: 0;
   top: 0;

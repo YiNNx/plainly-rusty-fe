@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const PostContainer = styled.div`
-    margin: 2rem 1rem 3rem 2rem;
     max-width: 51vw;
     
     @media (max-width: 850px) {

@@ -64,7 +64,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ onCommentSubmit }) => {
         if (comment.trim() !== '') {
             const newComment: Comment = {
                 id: new Date().getTime(),
-                nickname: 'John Doe',
+                githubName: 'John Doe',
                 time: new Date().toLocaleString(),
                 content: comment,
             };

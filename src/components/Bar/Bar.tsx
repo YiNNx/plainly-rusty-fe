@@ -9,8 +9,9 @@ const BarContainer = styled.header`
 
     a {
         font-weight: bold;
+        color: ${theme.colors.secondary};
         &:hover {
-            color: ${theme.colors.tertiary};
+            color: ${theme.colors.primary};
             text-decoration: underline 1px;
             text-underline-offset: .4rem;
         }
@@ -47,14 +48,11 @@ const BarContainer = styled.header`
 `;
 
 const BarList = styled.ul`
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     list-style: none;
     padding: 0 .2rem;
     li {
         padding: 1rem 0;
-    }
-    a {
-        color: ${theme.colors.secondary};
     }
 
     @media (max-width: 850px){
@@ -71,7 +69,7 @@ const BarList = styled.ul`
 
 const Header = styled.h1`
     font-family: 'SourceHanSerifCN';
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     padding: 2rem 0;
 
     a {
@@ -88,15 +86,16 @@ const Header = styled.h1`
 `;
 
 const HeaderSpan = styled.span`
-    background-image: linear-gradient(50deg, ${theme.colors.secondary}, ${theme.colors.primary});
-    transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
     padding: 0;
+    /* background-image: linear-gradient(50deg, ${theme.colors.secondary}, ${theme.colors.primary});
+    transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     &:hover {
         background-image: linear-gradient(45deg, ${theme.colors.primary}, ${theme.colors.primary});
-    }
+    } */
+    color: ${theme.colors.primary};
 
     @media (max-width: 850px) {
         background-image: none;

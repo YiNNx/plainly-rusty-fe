@@ -1,6 +1,6 @@
 export interface Comment {
     id: number;
-    nickname: string;
+    githubName: string;
     time: string;
     content: string;
 }

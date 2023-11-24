@@ -9,11 +9,11 @@ import { TimePostDetail } from '../Util/Time';
 
 const PostTitle = styled.h2`
     font-family: 'SourceHanSerifCN';
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     color: ${theme.colors.primary};
-    margin-top: 1rem;
-    margin-bottom: .5rem;
+    margin: 0 0 .6rem 0;
     display: flex;
+
     align-items: center; /* Center align items vertically */
 
     span {
@@ -53,7 +53,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }
             </PostMarkdownContent>
             <div>
                 <TagPostDetail>{tag}</TagPostDetail>
-                <TimePostDetail>{time}</TimePostDetail>
+                <TimePostDetail>{time.split(' ')[0]}</TimePostDetail>
             </div>
         </div>
     );

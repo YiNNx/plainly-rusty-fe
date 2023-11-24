@@ -1,7 +1,12 @@
 import React from 'react';
 import PostDetail from '../components/Post/Detail';
 import { PostContainer } from '../containers/Cantainers';
+import Breadcrumbs from '../components/Util/Breadcrumbs';
 
+const breadcrumbItems = [
+    { label: 'Home', to: '/' },
+    { label: 'Posts', to: '/' },
+];
 const Friends: React.FC = () => {
     const post = {
         id: '',
@@ -13,6 +18,7 @@ const Friends: React.FC = () => {
 
     return (
         <PostContainer>
+            <Breadcrumbs items={breadcrumbItems} />
             <PostDetail
                 title={post.title}
                 id={post.id}
