@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../theme';
 import { PostMarkdownContent, WithSyntaxHighlighter } from './Markdown';
@@ -13,6 +13,7 @@ const PostTitle = styled.h2`
     color: ${theme.colors.primary};
     margin: 0 0 .6rem 0;
     display: flex;
+    text-align: left;
 
     align-items: center; /* Center align items vertically */
 
@@ -29,6 +30,16 @@ const PostTitle = styled.h2`
             fill: ${theme.colors.primary};
         }
     }
+
+    @media (max-width: 850px) {
+        font-size: 1.5rem;
+    }
+`;
+
+const PostDetailContainer = styled.div`
+    @media (max-width: 850px) {
+        margin-top: -1.5rem;
+    }
 `;
 
 interface PostDetailProps {
@@ -36,26 +47,39 @@ interface PostDetailProps {
     id: string;
     content: string;
     time: string;
-    tag: string;
+    tags: string[];
 }
 
-const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tag, id }) => {
+const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tags, id }) => {
+    const [owner, setOwner] = useState(false);
+
+    useEffect(() => {
+        const role = localStorage.getItem('role');
+
+        if (role) {
+            if (role === "Owner") {
+                setOwner(true);
+            }
+        }
+    }, []);
     return (
-        <div>
+        <PostDetailContainer>
             <div>
                 <PostTitle>
                     <span>{title}</span>
-                    <IconEdit /><IconDelete />
+                    {owner && <div><a href={`/compose?post_id=${id}`} ><IconEdit /></a><IconDelete /></div>}
                 </PostTitle>
             </div>
             <PostMarkdownContent>
                 <WithSyntaxHighlighter content={content} />
             </PostMarkdownContent>
             <div>
-                <TagPostDetail>{tag}</TagPostDetail>
                 <TimePostDetail>{time.split(' ')[0]}</TimePostDetail>
+                {tags.map((tag: any, index: any) => (
+                    <TagPostDetail key={index}>{tag}</TagPostDetail>
+                ))}
             </div>
-        </div>
+        </PostDetailContainer>
     );
 };
 

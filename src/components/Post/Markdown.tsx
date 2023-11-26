@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 export const PostMarkdownContent = styled.div`
     font-size: 1rem;
     color: ${theme.colors.text};
-    margin-bottom: 5rem;
+    margin-bottom: 1.5rem;
     line-height: 1.6;
     word-spacing: 0;
     letter-spacing: 0;

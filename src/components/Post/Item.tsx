@@ -13,6 +13,7 @@ const PostTitle = styled.span`
 
     @media (max-width: 850px) {
         color:  ${theme.colors.primary};
+        font-size: 1.4rem;
     }
 `;
 
@@ -21,23 +22,32 @@ const PostContent = styled.p`
     font-size: 1.05rem;
     color: ${theme.colors.text};
     margin: .8rem 0 .7rem 0;
+    text-align: justify;
+
+    @media (max-width: 850px) {
+        margin: .4rem 0 .5rem 0;
+    }
 `;
 
 const PostItemContainer = styled.div`
     padding: 0rem 1.7rem;
-    margin: 2rem 0 2.8rem 0;
+    margin: 1rem 0 3.2rem 0;
     border-left: 2.5px solid ${theme.colors.secondary};
+
+    text-align: left;
 
     &:hover {
         /* border-left: 2px solid ${theme.colors.secondary}; */
         /* ${PostTitle} {
-            color: ${theme.colors.tertiary};
+            text-decoration: underline 1px;
+            text-underline-offset: .4rem;
+            text-decoration-color:  ${theme.colors.tertiary};
         } */
     }
 
     @media (max-width: 850px) {
-        margin: 2.75rem 1.5rem;
-        padding: 0rem 1.1rem;
+        padding: 0;
+        margin: .8rem 0 1.8rem;
         border-left: none;
 
         &:hover {
@@ -70,12 +80,12 @@ interface PostItemProps {
     title: string;
     id: string;
     tags: string[];
-    content: string;
+    summary: string;
     time: string;
 }
 
 
-const PostItem: React.FC<PostItemProps> = ({ title, content, id, tags, time }) => {
+const PostItem: React.FC<PostItemProps> = ({ title, summary, id, tags, time }) => {
     return (
         <PostItemContainer>
             <Link to={`/post/${id}`}>
@@ -85,7 +95,7 @@ const PostItem: React.FC<PostItemProps> = ({ title, content, id, tags, time }) =
                         <TagPostItem key={index}>{tag}</TagPostItem>
                     ))}
                 </ResponsiveForPC>
-                <PostContent>{content}</PostContent>
+                <PostContent>{summary}</PostContent>
                 <ResponsiveForMobile>
                     <TimePostItem>{time.split(' ')[0]}</TimePostItem>
                     {tags.map((tag: any, index: any) => (

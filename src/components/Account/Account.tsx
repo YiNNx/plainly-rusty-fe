@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../theme';
 import { ReactComponent as SvgAccount } from '../../assets/svg/account.svg';
@@ -32,7 +32,7 @@ const AccountUnloggedin = styled(AccountContainer)`
 
     span {
         padding: 0.6rem;
-        color: ${theme.colors.primary};
+        color: ${theme.colors.tertiary};
         visibility: hidden;
         
     }
@@ -42,9 +42,6 @@ const AccountUnloggedin = styled(AccountContainer)`
             visibility: visible;
             text-decoration: underline 1px;
             text-underline-offset: .4rem;
-        }
-        & svg {
-            fill: ${theme.colors.primary};
         }
     }
 
@@ -86,6 +83,34 @@ const Account: React.FC = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState<UserInfo | null>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [owner, setOwner] = useState(false);
+
+    useEffect(() => {
+        const role = localStorage.getItem('role');
+        if (role) {
+            if (role === "Owner") {
+                setOwner(true);
+            }
+        }
+        const username = localStorage.getItem('username');
+        const avatar = localStorage.getItem('avatar');
+
+        if (username) {
+            if (!avatar) {
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    username: username,
+                    avatar: "https://avatars.githubusercontent.com/u/583231?v=4",
+                }));
+            } else {
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    username: username,
+                    avatar: avatar,
+                }));
+            }
+        }
+    }, []);
 
     const handleOptionClick = (option: string) => {
         setIsOpen(false);
@@ -96,18 +121,18 @@ const Account: React.FC = () => {
         }
     };
 
-    const simulateLogin = () => {
-        setUser({
-            avatar: 'https://avatars.githubusercontent.com/u/86649490?v=4',
-            nickname: 'YiNNx',
-        });
-    };
-
     const handleLogout = () => {
-        setUser(null)
+        setUser(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('avatar');
+        localStorage.removeItem('role');
     };
 
-    const options = ['Compose', 'Log out']
+    let options = ['Log out'];
+    if (owner){
+        options = ['Compose', 'Log out'];
+    }
 
     return (
         <div>
@@ -116,7 +141,7 @@ const Account: React.FC = () => {
                     <DropdownButton onClick={() => setIsOpen(!isOpen)}>
                         <AccountLoggedin>
                             <img src={user.avatar} alt="User Avatar" />
-                            {/* <span>{user.nickname}</span> */}
+                            <span>{user.username}</span>
                         </AccountLoggedin>
                     </DropdownButton>
                     {isOpen && (
@@ -130,12 +155,12 @@ const Account: React.FC = () => {
                     )}
                 </DropdownContainer>
             ) : (
-                // <a href="https://github.com/login/oauth/authorize?client_id=c824ff557098530ebe15" onClick={simulateLogin}>
-                <AccountUnloggedin onClick={simulateLogin}>
-                    <SvgAccount />
-                    <span>Log in</span>
-                </AccountUnloggedin>
-                // </a>
+                <a href="https://github.com/login/oauth/authorize?client_id=c824ff557098530ebe15">
+                    <AccountUnloggedin>
+                        <SvgAccount />
+                        <span>Log in</span>
+                    </AccountUnloggedin>
+                </a>
             )}
         </div>
     );

@@ -11,9 +11,8 @@ const Tag = styled.span`
 
 export const TagPostItem = styled(Tag)`
     float: right;
-    font-size: 0.8125rem;
-    margin: 0.375rem 0;
-    padding: 0.1rem 0.7rem;
+    margin: 0.375rem .2rem;
+    padding: 0.25rem 0.7rem;
     
     @media (max-width: 850px) {
         color: ${theme.colors.secondary};

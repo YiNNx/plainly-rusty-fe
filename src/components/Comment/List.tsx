@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Comment } from '../../models/comment';
@@ -65,6 +65,17 @@ interface CommentListProps {
 }
 
 const CommentList: React.FC<CommentListProps> = ({ comments }) => {
+    const [owner, setOwner] = useState(false);
+
+    useEffect(() => {
+        const role = localStorage.getItem('role');
+
+        if (role) {
+            if (role === "Owner") {
+                setOwner(true);
+            }
+        }
+    }, []);
     return (
         <CommentsContainer>
             <hr />
@@ -74,7 +85,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
                         <div>
                             <CommentNickname target="_blank" href={`https://github.com/${comment.githubName}`}>{comment.githubName}</CommentNickname>
                             <TimeComment>{comment.time.split(' ')[0]}</TimeComment>
-                            <IconDelete />
+                            {owner && <div><IconDelete /></div>}
                         </div>
                         <div>{comment.content}</div>
                     </CommentContent>

@@ -25,7 +25,7 @@ const About: React.FC = () => {
                 id={post.id}
                 content={post.content}
                 time={post.time}
-                tag={post.tag} />
+                tags={[]} />
         </PostContainer>
     );
 };

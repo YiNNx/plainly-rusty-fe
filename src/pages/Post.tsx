@@ -44,11 +44,11 @@ const Post: React.FC = () => {
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <br />;
   }
 
   if (error || !data || !data.posts || !data.posts.nodes.length) {
-    return <p>Error loading post.</p>;
+    return <code>Post not found.</code>;
   }
 
   const post = data.posts.nodes[0];
@@ -61,7 +61,7 @@ const Post: React.FC = () => {
         id={post.id}
         content={post.content}
         time={post.time}
-        tag={post.tags.nodes.length > 0 ? post.tags.nodes[0].name : ''} // Assuming only one tag for simplicity
+        tags={post.tags.nodes.map((tag: any) => tag.name)} // Assuming only one tag for simplicity
       />
       <PostComment />
     </PostContainer>

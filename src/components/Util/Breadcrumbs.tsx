@@ -25,7 +25,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
             aria-current={index === items.length - 1 ? 'page' : undefined}
           >
             {index === items.length - 1 ? (
-              item.label
+              <Link to={location}>{item.label}</Link>
             ) : (
               <Link to={item.to}>{item.label}</Link>
             )}
@@ -38,6 +38,9 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
 
 const Nav = styled.nav`
   margin-bottom: 16px;
+  @media (max-width: 850px) {
+    visibility: hidden;
+  }
 `;
 
 const List = styled.ol`
@@ -60,6 +63,10 @@ const Item = styled.li<ItemProps>`
 
   a{
     color: ${theme.colors.tertiary};
+    &:hover {
+      text-decoration: underline 1px;
+      text-underline-offset: .3rem;
+    }
   }
 
   &:not(:last-child)::after {

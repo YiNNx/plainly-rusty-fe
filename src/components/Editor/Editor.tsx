@@ -1,44 +1,246 @@
-import { useState } from "react"
-import MdEditor from 'for-editor'
+import React, { useEffect, useState } from "react";
+import MdEditor from "for-editor";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import { ErrorMessage } from "../Util/Message";
 
-const DemoEditor = () => {
-    const toolbar = {
-        img: true, // 图片
-        preview: true, // 预览
-        expand: true, // 全屏
-        /* v0.0.9 */
-        undo: true, // 撤销
-        redo: true, // 重做
-        save: true, // 保存
-        /* v0.2.3 */
-        subfield: true, // 单双栏模式
-    };
-
-    // 保存Markdown文本内容
-    const [mdContent, setMdContent] = useState('')
-
-    // 上传图片
-    function uploadImg(file: any) {
-        console.log('file', file);
-    };
-    // 输入内容改变
-    function handleEditorChange(value: any) {
-        console.log('handleChange', value);
-        setMdContent(value)
+// Define your GraphQL mutations and queries
+const POSTS_CREATE_ONE = gql`
+  mutation PostsCreateOne($title: String!, $content: String!, $summary: String!) {
+    postsCreateOne(data: { id: 0, title: $title, content: $content, summary: $summary }) {
+      id
     }
-    // 保存输入内容
-    function handleEditorSave(value: any) {
-        console.log('handleEditorSave', value);
+  }
+`;
+
+const POSTS_UPDATE = gql`
+mutation PostsUpdate($title: String!, $content: String!, $summary: String!,$id: Int!) {
+    postsUpdate(
+        data: { title: $title, content: $content, summary: $summary }
+        filter: { id: { eq: $id } }
+    ) {
+        id
     }
-    return (
-        <MdEditor
-            placeholder="请输入Markdown文本"
-            toolbar={toolbar}
-            lineNum={0}
-            value={mdContent}
-            onChange={handleEditorChange}
-            onSave={handleEditorSave}
-            addImg={uploadImg} />
-    )
 }
-export default DemoEditor
+`;
+
+const TAGS_QUERY = gql`
+query Tags {
+    tags {
+        nodes {
+            id
+            name
+        }
+    }
+}
+`;
+
+const TAGS_CREATE_ONE = gql`
+  mutation TagsCreateOne($name: String!) {
+    tagsCreateOne(data: { id: 0, name: $name }) {
+      id
+      name
+    }
+  }
+`;
+
+const POST_TAGS_CREATE_ONE = gql`
+  mutation PostTagsCreateOne($postId: ID!, $tagId: ID!) {
+    postTagsCreateOne(data: { postId: $postId, tagId: $tagId }) {
+      postId
+    }
+  }
+`;
+
+const GET_POST = gql`
+  query Posts($postId: Int!) {
+    posts(filters: { id: { eq: $postId }, status: { eq: "PUBLIC" } }) {
+      nodes {
+        id
+        title
+        time
+        content
+        summary
+        status
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
+
+const DemoEditor: React.FC = () => {
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const post_id = params.get('post_id');
+
+
+    const navigate = useNavigate();
+    const [mdContent, setMdContent] = useState("");
+
+    const { loading, error, data } = useQuery(GET_POST, {
+        variables: { postId: parseInt(post_id || '', 10) }, // 将post_id作为变量传递给请求
+    });
+
+    useEffect(() => {
+        if (data?.posts.nodes.length > 0) {
+            const content = data.posts.nodes[0].content + "\n\n";
+            const title = "# " + data.posts.nodes[0].title + "\n\n";
+            const summary = "> " + data.posts.nodes[0].summary + "\n\n";
+            const tags = data.posts.nodes[0].tags.nodes.map((tag: any) => `#${tag.name} `).join("");
+            setMdContent(title + summary + content + tags);
+        }
+    }, [data]);
+
+    const toolbar = {
+        img: true,
+        preview: true,
+        expand: true,
+        undo: true,
+        redo: true,
+        save: true,
+        subfield: true,
+    };
+
+    const [createPost, { loading: createPostLoading, error: createPostError }] =
+        useMutation(POSTS_CREATE_ONE, {
+            onCompleted: (data) => {
+                const postId = data?.postsCreateOne.id;
+                navigate(`/post/${postId}`);
+            },
+            onError: (error) => {
+                console.error("Mutation error:", error.message);
+            },
+            context: {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            },
+        });
+
+    const [updatePost, { loading: updatePostLoading, error: updatePostError }] =
+        useMutation(POSTS_UPDATE, {
+            onCompleted: (data) => {
+                const postId = data?.postsUpdate[0].id;
+                navigate(`/post/${postId}`);
+            },
+            onError: (error) => {
+                console.error("Mutation error:", error.message);
+            },
+            context: {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            },
+        });
+
+    const { data: tagsData, refetch: refetchTags } = useQuery(TAGS_QUERY);
+
+    function uploadImg(file: any) {
+        console.log("file", file);
+    }
+
+    function handleEditorChange(value: any) {
+        setMdContent(value);
+    }
+
+    // 保存输入内容
+    async function handleEditorSave() {
+        // 解析标题、摘要、内容和标签
+        const lines = mdContent.replace(/\n+$/, '').split("\n\n");
+        const title = lines[0].replace(/^#\s/, "");
+        const summaryMatch = /^>\s(.*)/.exec(lines[1]);
+        const summary = summaryMatch ? summaryMatch[1] : "";
+        const content = lines.slice(2, lines.length - 1).join("\n\n");
+        const tags = lines[lines.length - 1].split(' ');
+
+        if (!post_id) {        // 创建帖子
+            const createPostResult = await createPost({
+                variables: { title, content, summary },
+            });
+
+            const postId = createPostResult.data?.postsCreateOne.id;
+
+            // 处理标签
+            for (const tag of tags) {
+                // 查询标签的 ID
+                const tagName = tag.substring(1); // 去掉 #
+                const tagData = tagsData?.tags.nodes.find((node: any) => node.name === tagName);
+                let tagId = tagData?.id;
+
+
+                // 如果标签不存在，则创建标签
+                if (!tagId) {
+                    const createTagResult = await createTag(tagName);
+                    tagId = createTagResult.data?.tagsCreateOne.id;
+                }
+
+                // 创建帖子与标签的关联
+                if (postId && tagId) {
+                    createPostTag(postId, tagId);
+                }
+            }
+
+            // 重新查询标签数据，以便获取新创建标签的 ID
+            refetchTags();
+        } else {
+            const id = parseInt(post_id);
+            await updatePost({
+                variables: { title, content, summary, id },
+            });
+        }
+    }
+
+    // 创建标签
+    const createTag = async (tagName: string) => {
+        return createTagMutation({
+            variables: { name: tagName },
+        });
+    };
+
+    const [createTagMutation] = useMutation(TAGS_CREATE_ONE, {
+        context: {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        },
+    });
+
+    // 创建帖子与标签的关联
+    const createPostTag = (postId: string, tagId: string) => {
+        createPostTagMutation({
+            variables: { postId, tagId },
+        });
+    };
+
+    const [createPostTagMutation] = useMutation(POST_TAGS_CREATE_ONE, {
+        context: {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        },
+    });
+
+    return (
+        <div>
+            <MdEditor
+                placeholder="请输入Markdown文本"
+                toolbar={toolbar}
+                lineNum={0}
+                value={mdContent}
+                onChange={handleEditorChange}
+                onSave={handleEditorSave}
+                addImg={uploadImg}
+            />
+            {createPostError && <ErrorMessage>Error: {createPostError.message}</ErrorMessage>}
+        </div>
+    );
+};
+
+export default DemoEditor;

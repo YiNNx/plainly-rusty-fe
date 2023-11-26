@@ -7,10 +7,10 @@ import About from './pages/About';
 import { Sidebar, PageContainer, MainContent } from './containers/PageLayout';
 import Friends from './pages/Friends';
 import Compose from './pages/Compose';
+import Oauth from './pages/Oauth';
 
 const Post = React.lazy(() => import('./pages/Post'));
 
-// 创建 Apollo Client 实例
 const client = new ApolloClient({
   uri: 'http://localhost:8000', // 替换为你的 GraphQL 服务器地址
   cache: new InMemoryCache(),
@@ -33,12 +33,13 @@ const App: React.FC = () => {
               <Route
                 path="/post/:id"
                 element={
-                  <Suspense fallback={<div>Loading...</div>}>
+                  <Suspense fallback={<br />}>
                     <Post />
                   </Suspense>
                 }
               />
               <Route path="/compose" element={<Compose />} />
+              <Route path="/oauth" element={<Oauth />} />
             </Routes>
           </MainContent>
         </PageContainer>

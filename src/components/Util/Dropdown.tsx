@@ -37,5 +37,7 @@ export const DropdownItem = styled.li`
 
     &:hover {
         color: ${theme.colors.primary};
+        text-decoration: underline 1px;
+        text-underline-offset: .2rem;
     }
 `;

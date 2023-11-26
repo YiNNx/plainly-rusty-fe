@@ -11,7 +11,7 @@ const COMMENTS_QUERY = gql`
   query Comments($postId: Int!, $limit: Int!, $offset: Int!) {
     comments(
       filters: { postId: { eq: $postId }, status: { eq: PUBLIC } }
-      orderBy: { time: DESC }
+      orderBy: { time: ASC }
       pagination: { offset: { limit: $limit, offset: $offset } }
     ) {
       nodes {

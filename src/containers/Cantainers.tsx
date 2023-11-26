@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
 export const PostContainer = styled.div`
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    animation: fadeIn .4s ease-in-out;
     max-width: 51vw;
     
     @media (max-width: 850px) {
@@ -10,7 +19,7 @@ export const PostContainer = styled.div`
 `;
 
 export const PostCommentContainer = styled.div`
-    margin: 4rem 0;
+    margin: 3rem 0;
 `;
 
 export const EditorContainer = styled.div`

@@ -11,7 +11,7 @@ const Friends: React.FC = () => {
     const post = {
         id: '',
         title: '友链',
-        content: '- 友链1: [链接]()\n- 友链2: [链接]()',
+        content: '---\n\n- 友链1: [链接]()\n- 友链2: [链接]()',
         tag: '',
         time: '',
     };
@@ -24,7 +24,7 @@ const Friends: React.FC = () => {
                 id={post.id}
                 content={post.content}
                 time={post.time}
-                tag={post.tag} />
+                tags={[]} />
         </PostContainer>
     );
 };

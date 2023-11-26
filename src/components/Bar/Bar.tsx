@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { theme } from '../../theme';
 import Account from '../Account/Account';
 import { ReactComponent as SvgMemu } from '../../assets/svg/memu.svg';
+import { SuccessMessage } from '../Util/Message';
 
 const BarContainer = styled.header`
     align-items: center;
@@ -132,6 +133,22 @@ const Menu = styled.div`
 
 const Bar: React.FC = () => {
     const [isNavActive, setNavActive] = useState(false);
+    const [showCopySuccess, setShowCopySuccess] = useState(false);
+
+    const handleCopyRssLink = async () => {
+        try {
+            const rssLink = 'http://localhost:8000/rss.xml';
+            await navigator.clipboard.writeText(rssLink);
+
+            setShowCopySuccess(true);
+
+            setTimeout(() => {
+                setShowCopySuccess(false);
+            }, 1500);
+        } catch (err) {
+            console.error('err:', err);
+        }
+    };
 
     return (
         <BarContainer>
@@ -145,7 +162,12 @@ const Bar: React.FC = () => {
                 <BarList>
                     <li><a href="/about">About</a></li>
                     <li><a href="/friends">Friends</a></li>
-                    <li><a href="/rss.xml">RSS</a></li>
+                    <li>
+                        <a href="#RSS" onClick={handleCopyRssLink}>
+                            RSS
+                        </a>
+                        {showCopySuccess && <SuccessMessage>Copied to clipboard!</SuccessMessage>}
+                    </li>
                     <Account />
                 </BarList>
             </nav>

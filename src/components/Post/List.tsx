@@ -51,16 +51,30 @@ interface GetPostsData {
 }
 
 const PostListContainer = styled.div`
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    animation: fadeIn .4s ease-in-out;
+    @media (max-width: 850px) {
+        margin: .8rem 1rem 1rem;
+        padding: 0rem 1.1rem;
+      }
 `;
 
 const BlogList: React.FC = () => {
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
   const { loading, error, data, fetchMore } = useQuery<GetPostsData>(GET_POSTS, {
     variables: { limit, offset },
   });
+
   const [allPosts, setAllPosts] = useState<PostData[]>([]);
 
   useEffect(() => {
@@ -95,7 +109,7 @@ const BlogList: React.FC = () => {
             <Post
               key={post.id}
               title={post.title}
-              content={post.summary}
+              summary={post.summary}
               id={post.id.toString()}
               time={post.time}
               tags={post.tags.nodes.map((tag) => tag.name)}
