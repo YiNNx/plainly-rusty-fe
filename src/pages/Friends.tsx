@@ -5,13 +5,13 @@ import Breadcrumbs from '../components/Util/Breadcrumbs';
 
 const breadcrumbItems = [
     { label: 'Home', to: '/' },
-    { label: 'Posts', to: '/' },
+    { label: 'Friends', to: '/friends' },
 ];
 const Friends: React.FC = () => {
     const post = {
-        id: '',
+        id: 0,
         title: '友链',
-        content: '---\n\n- 友链1: [链接]()\n- 友链2: [链接]()',
+        content: '',
         tag: '',
         time: '',
     };

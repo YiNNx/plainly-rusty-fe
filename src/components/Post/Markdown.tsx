@@ -56,11 +56,10 @@ export const PostMarkdownContent = styled.div`
     h2 {
         line-height: 1.5;
         font-size: 1.25rem;
-        background-image: linear-gradient(45deg, ${theme.colors.secondary}, ${theme.colors.primary});
-        transition: ${theme.colors.secondary} 0.2s ease-out 0s, ${theme.colors.primary} 0.2s ease-in-out 0s;
+        background-image: linear-gradient(90deg, ${theme.colors.secondary}, ${theme.colors.primary});
         color: ${theme.colors.background};
-        padding: 0 .5rem;
-        /* border-radius: 8px; */
+        padding: .125rem .7rem;
+        border-radius: 2px;
         display: inline-block;
         margin: 1rem 0;
         /* border-left: 4px solid #4870ac; */
@@ -87,8 +86,8 @@ export const PostMarkdownContent = styled.div`
         line-height: 1.2;
         font-size: 1.1rem;
         margin: .8rem 0;
-        border-left: 3px solid ${theme.colors.secondary};
-        padding: 0 0.7rem;
+        border-left: 3px solid ${theme.colors.tertiary};
+        padding: 0.1rem 0.7rem 0.1rem 0.7rem;
     }
 
     h4,h5,h6 {
@@ -142,7 +141,7 @@ export const PostMarkdownContent = styled.div`
     blockquote {
         display: block;
         overflow: auto;
-        border-left: 3px solid ${theme.colors.secondary};
+        border-left: 3px solid ${theme.colors.primary};
         padding: 0.9rem 1.875rem .9rem 1.25rem;
         margin: 1.25rem 0;
         background: ${theme.colors.block};
@@ -167,11 +166,13 @@ export const PostMarkdownContent = styled.div`
     }
 
     pre {
-    padding: .1rem 0;
+    padding: 0;
     }
 
     img {
-        max-width: 20rem;
+        max-width: 95%;
+        margin: .5rem auto;
+        display: block;
     }
 
     hr {

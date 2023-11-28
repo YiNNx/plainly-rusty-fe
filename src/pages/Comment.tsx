@@ -60,20 +60,13 @@ const PostComment: React.FC = () => {
         });
     };
 
-    const handleCommentSubmit = (newComment: Comment) => {
-        // Assuming the mutation for adding a new comment is available,
-        // you can use it here and then update the comments list accordingly.
-        // After adding the new comment, you may want to refetch the comments
-        // or update the cache to include the new comment.
-    };
-
     return (
         <PostCommentContainer>
             <CommentList comments={comments} />
             {!loading && hasMoreComments && !final && (
                 <Loading onClick={handleLoadMore}>Load More</Loading>
             )}
-            {!loading && <CommentBox onCommentSubmit={handleCommentSubmit} />}
+            {!loading && <CommentBox/>}
         </PostCommentContainer>
     );
 };

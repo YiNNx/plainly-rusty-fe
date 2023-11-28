@@ -59,7 +59,7 @@ const PostListContainer = styled.div`
         opacity: 1;
       }
     }
-    animation: fadeIn .4s ease-in-out;
+    animation: fadeIn .3s ease-in-out;
     @media (max-width: 850px) {
         margin: .8rem 1rem 1rem;
         padding: 0rem 1.1rem;
@@ -67,7 +67,7 @@ const PostListContainer = styled.div`
 `;
 
 const BlogList: React.FC = () => {
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(6);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 

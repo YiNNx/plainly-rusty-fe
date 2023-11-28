@@ -7,7 +7,6 @@ import PostComment from './Comment';
 import { PostContainer } from '../containers/Cantainers';
 import Breadcrumbs from '../components/Util/Breadcrumbs';
 
-// 定义 GraphQL 查询
 const GET_POST = gql`
   query Posts($postId: Int!) {
     posts(filters: { id: { eq: $postId }, status: { eq: PUBLIC } }) {
@@ -38,7 +37,6 @@ const Post: React.FC = () => {
   const { id } = useParams();
   const postId = parseInt(id || '', 10);
 
-  // 使用 useQuery hook 发送 GraphQL 查询
   const { loading, error, data } = useQuery(GET_POST, {
     variables: { postId },
   });
@@ -58,10 +56,10 @@ const Post: React.FC = () => {
       <Breadcrumbs items={breadcrumbItems} />
       <PostDetail
         title={post.title}
-        id={post.id}
+        id={parseInt(post.id)}
         content={post.content}
         time={post.time}
-        tags={post.tags.nodes.map((tag: any) => tag.name)} // Assuming only one tag for simplicity
+        tags={post.tags.nodes.map((tag: any) => tag.name)}
       />
       <PostComment />
     </PostContainer>

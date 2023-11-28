@@ -5,14 +5,14 @@ import Breadcrumbs from '../components/Util/Breadcrumbs';
 
 const breadcrumbItems = [
     { label: 'Home', to: '/' },
-    { label: 'Posts', to: '/' },
+    { label: 'About', to: '/about' },
 ];
 
 const About: React.FC = () => {
     const post = {
-        id: '',
+        id: 0,
         title: '关于',
-        content: '这是一篇关于',
+        content: '因为从来都不擅长自我介绍，所以这基本是一个空页面\n\n我的 Github：[YiNNx](https://github.com/YiNNx)\n\n我的邮箱：yinnnxt@gmail.com',
         tag: '',
         time: '',
     };

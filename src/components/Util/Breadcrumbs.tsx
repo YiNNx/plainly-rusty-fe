@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from '../../theme';
 
@@ -21,13 +21,12 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
         {items.map((item, index) => (
           <Item
             key={index}
-            isActive={index === items.length - 1}
             aria-current={index === items.length - 1 ? 'page' : undefined}
           >
             {index === items.length - 1 ? (
-              <Link to={location}>{item.label}</Link>
+              <a href={`${location.pathname}`}>{item.label}</a>
             ) : (
-              <Link to={item.to}>{item.label}</Link>
+              <a href={item.to}>{item.label}</a>
             )}
           </Item>
         ))}
@@ -50,11 +49,7 @@ const List = styled.ol`
   margin: 0;
 `;
 
-interface ItemProps {
-  isActive: boolean;
-}
-
-const Item = styled.li<ItemProps>`
+const Item = styled.li`
   display: flex;
   align-items: center;
   font-size: .95rem;

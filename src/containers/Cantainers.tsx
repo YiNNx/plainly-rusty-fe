@@ -9,7 +9,7 @@ export const PostContainer = styled.div`
         opacity: 1;
       }
     }
-    animation: fadeIn .4s ease-in-out;
+    animation: fadeIn .3s ease-in-out;
     max-width: 51vw;
     
     @media (max-width: 850px) {

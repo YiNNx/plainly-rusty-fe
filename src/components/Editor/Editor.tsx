@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { ErrorMessage } from "../Util/Message";
 
-// Define your GraphQL mutations and queries
+
 const POSTS_CREATE_ONE = gql`
   mutation PostsCreateOne($title: String!, $content: String!, $summary: String!) {
     postsCreateOne(data: { id: 0, title: $title, content: $content, summary: $summary }) {
@@ -85,7 +85,7 @@ const DemoEditor: React.FC = () => {
     const [mdContent, setMdContent] = useState("");
 
     const { loading, error, data } = useQuery(GET_POST, {
-        variables: { postId: parseInt(post_id || '', 10) }, // 将post_id作为变量传递给请求
+        variables: { postId: parseInt(post_id || '', 10) },
     });
 
     useEffect(() => {
@@ -99,11 +99,7 @@ const DemoEditor: React.FC = () => {
     }, [data]);
 
     const toolbar = {
-        img: true,
-        preview: true,
         expand: true,
-        undo: true,
-        redo: true,
         save: true,
         subfield: true,
     };
@@ -150,9 +146,9 @@ const DemoEditor: React.FC = () => {
         setMdContent(value);
     }
 
-    // 保存输入内容
+
     async function handleEditorSave() {
-        // 解析标题、摘要、内容和标签
+
         const lines = mdContent.replace(/\n+$/, '').split("\n\n");
         const title = lines[0].replace(/^#\s/, "");
         const summaryMatch = /^>\s(.*)/.exec(lines[1]);
@@ -160,34 +156,34 @@ const DemoEditor: React.FC = () => {
         const content = lines.slice(2, lines.length - 1).join("\n\n");
         const tags = lines[lines.length - 1].split(' ');
 
-        if (!post_id) {        // 创建帖子
+        if (!post_id) {
             const createPostResult = await createPost({
                 variables: { title, content, summary },
             });
 
             const postId = createPostResult.data?.postsCreateOne.id;
 
-            // 处理标签
+
             for (const tag of tags) {
-                // 查询标签的 ID
-                const tagName = tag.substring(1); // 去掉 #
+
+                const tagName = tag.substring(1);
                 const tagData = tagsData?.tags.nodes.find((node: any) => node.name === tagName);
                 let tagId = tagData?.id;
 
 
-                // 如果标签不存在，则创建标签
+
                 if (!tagId) {
                     const createTagResult = await createTag(tagName);
                     tagId = createTagResult.data?.tagsCreateOne.id;
                 }
 
-                // 创建帖子与标签的关联
+
                 if (postId && tagId) {
                     createPostTag(postId, tagId);
                 }
             }
 
-            // 重新查询标签数据，以便获取新创建标签的 ID
+
             refetchTags();
         } else {
             const id = parseInt(post_id);
@@ -195,9 +191,10 @@ const DemoEditor: React.FC = () => {
                 variables: { title, content, summary, id },
             });
         }
+        window.location.reload();
     }
 
-    // 创建标签
+
     const createTag = async (tagName: string) => {
         return createTagMutation({
             variables: { name: tagName },
@@ -212,7 +209,7 @@ const DemoEditor: React.FC = () => {
         },
     });
 
-    // 创建帖子与标签的关联
+
     const createPostTag = (postId: string, tagId: string) => {
         createPostTagMutation({
             variables: { postId, tagId },

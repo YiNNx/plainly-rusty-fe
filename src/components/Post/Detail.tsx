@@ -6,12 +6,14 @@ import { ReactComponent as IconEdit } from '../../assets/svg/edit.svg'
 import { ReactComponent as IconDelete } from '../../assets/svg/delete.svg'
 import { TagPostDetail } from '../Util/Tag';
 import { TimePostDetail } from '../Util/Time';
+import { gql, useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
 
 const PostTitle = styled.h2`
     font-family: 'SourceHanSerifCN';
     font-size: 1.9rem;
     color: ${theme.colors.primary};
-    margin: 0 0 .6rem 0;
+    margin: 0 0 .7rem 0;
     display: flex;
     text-align: left;
 
@@ -44,30 +46,69 @@ const PostDetailContainer = styled.div`
 
 interface PostDetailProps {
     title: string;
-    id: string;
+    id: number;
     content: string;
     time: string;
     tags: string[];
 }
 
+const DELETE_POST_MUTATION = gql`
+  mutation PostsUpdate($id: ID!) {
+    postsUpdate(
+      data: {
+        title: "DELETED"
+        content: "DELETED"
+        summary: "DELETED"
+        status: "DELETED"
+      }
+      filter: { id: { eq: $id } }
+    ) {
+      id
+    }
+  }
+`;
+
 const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tags, id }) => {
     const [owner, setOwner] = useState(false);
+    const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+        onCompleted: (data) => {
+            navigate("/");
+            window.location.reload();
+        },
+        onError: (error) => {
+            console.error("Mutation error:", error.message);
+        },
+        context: {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        },
+    });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const role = localStorage.getItem('role');
 
-        if (role) {
-            if (role === "Owner") {
-                setOwner(true);
-            }
+        if (role === "Owner") {
+            setOwner(true);
         }
     }, []);
+
+    const handleDelete = () => {
+        deletePost({ variables: { id } })
+    };
+
     return (
         <PostDetailContainer>
             <div>
                 <PostTitle>
                     <span>{title}</span>
-                    {owner && <div><a href={`/compose?post_id=${id}`} ><IconEdit /></a><IconDelete /></div>}
+                    {owner && (
+                        <div>
+                            <a href={`/compose?post_id=${id}`}><IconEdit /></a>
+                            <IconDelete onClick={handleDelete} />
+                        </div>
+                    )}
                 </PostTitle>
             </div>
             <PostMarkdownContent>
@@ -75,7 +116,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tags, id 
             </PostMarkdownContent>
             <div>
                 <TimePostDetail>{time.split(' ')[0]}</TimePostDetail>
-                {tags.map((tag: any, index: any) => (
+                {tags.map((tag: string, index: number) => (
                     <TagPostDetail key={index}>{tag}</TagPostDetail>
                 ))}
             </div>

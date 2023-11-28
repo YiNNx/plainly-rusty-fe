@@ -83,15 +83,8 @@ const Account: React.FC = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState<UserInfo | null>(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [owner, setOwner] = useState(false);
 
     useEffect(() => {
-        const role = localStorage.getItem('role');
-        if (role) {
-            if (role === "Owner") {
-                setOwner(true);
-            }
-        }
         const username = localStorage.getItem('username');
         const avatar = localStorage.getItem('avatar');
 
@@ -130,9 +123,6 @@ const Account: React.FC = () => {
     };
 
     let options = ['Log out'];
-    if (owner){
-        options = ['Compose', 'Log out'];
-    }
 
     return (
         <div>

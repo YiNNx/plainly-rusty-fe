@@ -22,7 +22,7 @@
 body,textarea {
   background-color: #fcfdff;
   margin: 0;
-  text-align: justify;
+  /* text-align: justify; */
   font-family: Cantarell,SourceHanSerifCN;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
-import { Comment } from '../../models/comment';
 import { ReactComponent as Send } from '../../assets/svg/send.svg';
 import { theme } from '../../theme';
 import { ErrorMessage } from '../Util/Message';
 
-// Define your GraphQL mutation
 const COMMENT_MUTATION = gql`
   mutation Comment($content: String!, $post_id: Int!) {
     comment(content: $content, post_id: $post_id) 
   }
 `;
 
-// 评论发布组件
+
 const CommentForm = styled.form`
   margin: 2rem 0;
 `;
@@ -55,21 +53,13 @@ const CommentButton = styled.button`
   }
 `;
 
-interface CommentBoxProps {
-  onCommentSubmit: (comment: Comment) => void;
-}
 
-const CommentBox: React.FC<CommentBoxProps> = ({ onCommentSubmit }) => {
-  const { id: postId } = useParams(); // 获取路由参数 post_id
-  const navigate = useNavigate();
+const CommentBox: React.FC = () => {
+  const { id: postId } = useParams();
   const [comment, setComment] = useState<string>('');
 
-  const [commentMutation, { loading, error }] = useMutation(COMMENT_MUTATION, {
-    onCompleted: (data) => {
-      // 处理评论成功后的逻辑
-      const newComment: Comment = data?.comment;
-      onCommentSubmit(newComment);
-      setComment('');
+  const [commentMutation, { error }] = useMutation(COMMENT_MUTATION, {
+    onCompleted: () => {
       window.location.reload();
     },
     onError: (error) => {

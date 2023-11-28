@@ -3,7 +3,7 @@ import { theme } from "../../theme";
 
 const Message = styled.code`
     background-color: ${theme.colors.background};
-    padding: .8rem 1rem;
+    padding: .6rem .8rem;
     font-size: .9rem;
     border-radius: .8rem;
     position: fixed;
@@ -13,7 +13,7 @@ const Message = styled.code`
     text-align: left;
     background-color: white;
     padding: 1rem 1.2rem;
-    box-shadow: 0px 2px 4px #c8d2e193;
+    box-shadow: 0px 2px 5px #c8d2e1d3;
 
     @media (max-width: 850px) {
         right: 18vw;
@@ -27,7 +27,6 @@ const Message = styled.code`
                 opacity: 1;
             }
         }
-    animation: slideInAndOut 2s ease-in-out 1;
     }
 `;
 
@@ -60,7 +59,7 @@ export const SuccessMessage = styled(Message)`
             opacity: 1;
         }
     }
-    animation: slideInAndOut 1.5s ease-in-out 1;
+    animation: slideInAndOut 1.6s ease-in-out 1;
     color: ${theme.colors.tertiary};
     right: 45vw;
     left: 35vw;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../theme';
 import Account from '../Account/Account';
@@ -134,7 +134,15 @@ const Menu = styled.div`
 const Bar: React.FC = () => {
     const [isNavActive, setNavActive] = useState(false);
     const [showCopySuccess, setShowCopySuccess] = useState(false);
-
+    const [owner, setOwner] = useState(false);
+    useEffect(() => {
+        const role = localStorage.getItem('role');
+        if (role) {
+            if (role === "Owner") {
+                setOwner(true);
+            }
+        }
+    }, []);
     const handleCopyRssLink = async () => {
         try {
             const rssLink = 'http://localhost:8000/rss.xml';
@@ -168,6 +176,7 @@ const Bar: React.FC = () => {
                         </a>
                         {showCopySuccess && <SuccessMessage>Copied to clipboard!</SuccessMessage>}
                     </li>
+                    {owner && <li><a href="/compose">Compose</a></li>}
                     <Account />
                 </BarList>
             </nav>
