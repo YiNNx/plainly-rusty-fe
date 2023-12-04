@@ -12,7 +12,7 @@ const About: React.FC = () => {
     const post = {
         id: 0,
         title: '关于',
-        content: '因为从来都不擅长自我介绍，所以这基本是一个空页面\n\n我的 Github：[YiNNx](https://github.com/YiNNx)\n\n我的邮箱：yinnnxt@gmail.com',
+        content: '',
         tag: '',
         time: '',
     };

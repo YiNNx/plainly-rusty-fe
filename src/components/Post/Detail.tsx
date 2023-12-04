@@ -17,10 +17,10 @@ const PostTitle = styled.h2`
     display: flex;
     text-align: left;
 
-    align-items: center; /* Center align items vertically */
+    align-items: center; 
 
     span {
-        flex: 1; /* Take up remaining space */
+        flex: 1; 
     }
 
     svg {

@@ -170,8 +170,8 @@ export const PostMarkdownContent = styled.div`
     }
 
     img {
-        max-width: 95%;
-        margin: .5rem auto;
+        max-width: 100%;
+        margin: 1rem auto;
         display: block;
     }
 

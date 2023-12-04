@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MdEditor from "for-editor";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import { ErrorMessage } from "../Util/Message";
-
 
 const POSTS_CREATE_ONE = gql`
   mutation PostsCreateOne($title: String!, $content: String!, $summary: String!) {
@@ -84,7 +83,7 @@ const DemoEditor: React.FC = () => {
     const navigate = useNavigate();
     const [mdContent, setMdContent] = useState("");
 
-    const { loading, error, data } = useQuery(GET_POST, {
+    const { data } = useQuery(GET_POST, {
         variables: { postId: parseInt(post_id || '', 10) },
     });
 
@@ -104,7 +103,7 @@ const DemoEditor: React.FC = () => {
         subfield: true,
     };
 
-    const [createPost, { loading: createPostLoading, error: createPostError }] =
+    const [createPost, { error: createPostError }] =
         useMutation(POSTS_CREATE_ONE, {
             onCompleted: (data) => {
                 const postId = data?.postsCreateOne.id;
@@ -120,7 +119,7 @@ const DemoEditor: React.FC = () => {
             },
         });
 
-    const [updatePost, { loading: updatePostLoading, error: updatePostError }] =
+    const [updatePost,] =
         useMutation(POSTS_UPDATE, {
             onCompleted: (data) => {
                 const postId = data?.postsUpdate[0].id;

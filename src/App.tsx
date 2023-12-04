@@ -12,7 +12,7 @@ import Oauth from './pages/Oauth';
 const Post = React.lazy(() => import('./pages/Post'));
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000', // 替换为你的 GraphQL 服务器地址
+  uri: 'https://47.113.230.170/api/',
   cache: new InMemoryCache(),
 });
 

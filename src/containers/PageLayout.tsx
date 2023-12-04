@@ -12,7 +12,7 @@ export const PageContainer = styled.div`
 
 export const MainContent = styled.div`
   flex: 1;
-  padding: 5.5rem 10vw 4rem 17vw; 
+  padding: 4.8rem 10vw 4rem 17vw; 
   margin-right: 19vw;
   max-width: 70vw;
   
@@ -40,6 +40,6 @@ export const Sidebar = styled.div`
     padding: 0;
     height: 1rem;
     width: 100%;
-    border-left: none; /* 移动端去掉左边框 */
+    border-left: none; 
   }
 `;

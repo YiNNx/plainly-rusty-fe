@@ -1,22 +1,22 @@
 @font-face {
   font-family: "JetBrainsMono";
-  src: url('assets/font/JetBrainsMono-Regular.ttf');
+  src: url('https://cdn.just-plain.fun/static/JetBrainsMono-Regular.ttf');
 }
 
 @font-face {
   font-family: "SourceHanSerifCN";
-  src: url('assets/font/SourceHanSerifCN-Regular.otf');
+  src: url('https://cdn.just-plain.fun/static/SourceHanSerifCN-Regular.otf');
 }
 
 @font-face {
   font-family: "SourceHanSerifCN";
-  src: url('assets/font/SourceHanSerifCN-Bold.otf');
+  src: url('https://cdn.just-plain.fun/static/SourceHanSerifCN-Bold.otf');
   font-weight: bold;
 }
 
 @font-face {
   font-family: "Cantarell";
-  src: url('assets/font/Cantarell-VF-fixed.otf');
+  src: url('https://cdn.just-plain.fun/static/Cantarell-VF-fixed.otf');
 }
 
 body,textarea {

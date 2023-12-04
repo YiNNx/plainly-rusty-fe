@@ -67,11 +67,11 @@ const PostListContainer = styled.div`
 `;
 
 const BlogList: React.FC = () => {
-  const [limit, setLimit] = useState(6);
+  const limit = 6;
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
-  const { loading, error, data, fetchMore } = useQuery<GetPostsData>(GET_POSTS, {
+  const { data, fetchMore } = useQuery<GetPostsData>(GET_POSTS, {
     variables: { limit, offset },
   });
 

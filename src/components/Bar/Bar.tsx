@@ -19,8 +19,8 @@ const BarContainer = styled.header`
     }
 
     @media (max-width: 850px) {
-        display: flex; /* Added to make h1 and menu-icon side by side */
-        justify-content: space-between; /* Added to create space between h1 and menu-icon */
+        display: flex;  
+        justify-content: space-between; 
         background-image: linear-gradient(50deg, ${theme.colors.secondary}, ${theme.colors.primary});
 
         a {
@@ -145,7 +145,7 @@ const Bar: React.FC = () => {
     }, []);
     const handleCopyRssLink = async () => {
         try {
-            const rssLink = 'http://localhost:8000/rss.xml';
+            const rssLink = 'https://47.113.230.170/api/rss.xml';
             await navigator.clipboard.writeText(rssLink);
 
             setShowCopySuccess(true);
