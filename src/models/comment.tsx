@@ -3,4 +3,5 @@ export interface Comment {
     githubName: string;
     time: string;
     content: string;
+    avatar: string;
 }

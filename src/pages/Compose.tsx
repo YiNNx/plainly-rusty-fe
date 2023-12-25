@@ -1,6 +1,6 @@
 import React from 'react';
 import Editor from '../components/Editor/Editor';
-import { EditorContainer } from '../containers/Cantainers';
+import { EditorContainer } from '../containers/Containers';
 
 
 const Compose: React.FC = () => {

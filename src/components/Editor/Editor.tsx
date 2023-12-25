@@ -54,7 +54,7 @@ const POST_TAGS_CREATE_ONE = gql`
 
 const GET_POST = gql`
   query Posts($postId: Int!) {
-    posts(filters: { id: { eq: $postId }, status: { eq: "PUBLIC" } }) {
+    posts(filters: { id: { eq: $postId } }) {
       nodes {
         id
         title
@@ -74,28 +74,33 @@ const GET_POST = gql`
 `;
 
 
-const DemoEditor: React.FC = () => {
+const Editor: React.FC = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const post_id = params.get('post_id');
-
-
     const navigate = useNavigate();
-    const [mdContent, setMdContent] = useState("");
+    const [mdContent, setMdContent] = useState("# Title\n\n> Summary\n\nContent\n\n#Tag");
 
     const { data } = useQuery(GET_POST, {
         variables: { postId: parseInt(post_id || '', 10) },
     });
 
     useEffect(() => {
-        if (data?.posts.nodes.length > 0) {
-            const content = data.posts.nodes[0].content + "\n\n";
-            const title = "# " + data.posts.nodes[0].title + "\n\n";
-            const summary = "> " + data.posts.nodes[0].summary + "\n\n";
-            const tags = data.posts.nodes[0].tags.nodes.map((tag: any) => `#${tag.name} `).join("");
-            setMdContent(title + summary + content + tags);
+        let key = post_id ? `$post_{post_id}` : "post_new";
+        let saved = localStorage.getItem(key);
+        if (saved) {
+            setMdContent(saved)
         }
-    }, [data]);
+        else if (data) {
+            if (data?.posts.nodes.length > 0) {
+                const content = data.posts.nodes[0].content + "\n\n";
+                const title = "# " + data.posts.nodes[0].title + "\n\n";
+                const summary = "> " + data.posts.nodes[0].summary + "\n\n";
+                const tags = data.posts.nodes[0].tags.nodes.map((tag: any) => `#${tag.name} `).join("");
+                setMdContent(title + summary + content + tags);
+            }
+        }
+    }, []);
 
     const toolbar = {
         expand: true,
@@ -106,6 +111,7 @@ const DemoEditor: React.FC = () => {
     const [createPost, { error: createPostError }] =
         useMutation(POSTS_CREATE_ONE, {
             onCompleted: (data) => {
+                localStorage.removeItem("post_new");
                 const postId = data?.postsCreateOne.id;
                 navigate(`/post/${postId}`);
             },
@@ -123,6 +129,7 @@ const DemoEditor: React.FC = () => {
         useMutation(POSTS_UPDATE, {
             onCompleted: (data) => {
                 const postId = data?.postsUpdate[0].id;
+                localStorage.removeItem(`$post_{postId}`);
                 navigate(`/post/${postId}`);
             },
             onError: (error) => {
@@ -143,11 +150,14 @@ const DemoEditor: React.FC = () => {
 
     function handleEditorChange(value: any) {
         setMdContent(value);
+        if (post_id) {
+            localStorage.setItem(`$post_{post_id}`, value);
+        } else {
+            localStorage.setItem(`post_new`, value);
+        }
     }
 
-
     async function handleEditorSave() {
-
         const lines = mdContent.replace(/\n+$/, '').split("\n\n");
         const title = lines[0].replace(/^#\s/, "");
         const summaryMatch = /^>\s(.*)/.exec(lines[1]);
@@ -239,4 +249,4 @@ const DemoEditor: React.FC = () => {
     );
 };
 
-export default DemoEditor;
+export default Editor;

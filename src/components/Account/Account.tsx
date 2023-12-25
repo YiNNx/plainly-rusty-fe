@@ -130,7 +130,7 @@ const Account: React.FC = () => {
                 <DropdownContainer>
                     <DropdownButton onClick={() => setIsOpen(!isOpen)}>
                         <AccountLoggedin>
-                            <img src={user.avatar} alt="User Avatar" />
+                            <img src={user.avatar} alt="" />
                             <span>{user.username}</span>
                         </AccountLoggedin>
                     </DropdownButton>

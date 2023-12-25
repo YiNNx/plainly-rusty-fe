@@ -5,12 +5,12 @@
 
 @font-face {
   font-family: "SourceHanSerifCN";
-  src: url('https://cdn.just-plain.fun/static/SourceHanSerifCN-Regular.otf');
+  src: url('assets/font/SourceHanSerifCN-Regular-min.otf');
 }
 
 @font-face {
   font-family: "SourceHanSerifCN";
-  src: url('https://cdn.just-plain.fun/static/SourceHanSerifCN-Bold.otf');
+  src: url('assets/font/SourceHanSerifCN-Bold-min.otf');
   font-weight: bold;
 }
 

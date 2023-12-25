@@ -11,6 +11,7 @@ export const PageContainer = styled.div`
 `;
 
 export const MainContent = styled.div`
+  z-index: 10;
   flex: 1;
   padding: 4.8rem 10vw 4rem 17vw; 
   margin-right: 19vw;
@@ -38,8 +39,21 @@ export const Sidebar = styled.div`
     right: 0;
     top: 0;
     padding: 0;
-    height: 1rem;
+    height: 0;
     width: 100%;
     border-left: none; 
+
+    .show {
+        position: fixed;
+        top: 0;
+
+        transition: 0.3s linear;
+        }
+    .hide {
+        position: fixed;
+        top: -5rem;
+        transition: 0.3s linear;
+        }
   }
+
 `;

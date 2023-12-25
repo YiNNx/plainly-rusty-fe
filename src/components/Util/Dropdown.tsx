@@ -27,13 +27,29 @@ export const DropdownList = styled.ul`
     background-color: #fff;
     box-shadow: 0 2px 6px ${theme.colors.shadow};
     border-radius: 1rem;
+    z-index: 500;
 `;
+
+export const EditList = styled(DropdownList)`
+    position: fixed;
+    bottom: 60vh;
+    left: 60vw;
+
+    padding: .5rem 0;
+    @media (max-width: 850px) {
+        bottom: 67vh;
+        left: 58vw;
+    }
+`
 
 export const DropdownItem = styled.li`
     margin: 0 1rem;
     font-size: 0.875rem;
     color: #333;
     cursor: pointer;
+    font-family: Cantarell;
+    font-weight: normal;
+    padding: .4rem 0;
 
     &:hover {
         color: ${theme.colors.primary};

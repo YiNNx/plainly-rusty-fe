@@ -12,7 +12,7 @@ import Oauth from './pages/Oauth';
 const Post = React.lazy(() => import('./pages/Post'));
 
 const client = new ApolloClient({
-  uri: 'https://47.113.230.170/api/',
+  uri: 'https://just-plain.fun/api/',
   cache: new InMemoryCache(),
 });
 

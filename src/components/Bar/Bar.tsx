@@ -6,7 +6,10 @@ import { ReactComponent as SvgMemu } from '../../assets/svg/memu.svg';
 import { SuccessMessage } from '../Util/Message';
 
 const BarContainer = styled.header`
+    z-index: 1000;
     align-items: center;
+    right: 0;
+    left: 0;
 
     a {
         font-weight: bold;
@@ -133,8 +136,32 @@ const Menu = styled.div`
 
 const Bar: React.FC = () => {
     const [isNavActive, setNavActive] = useState(false);
-    const [showCopySuccess, setShowCopySuccess] = useState(false);
+    // const [showCopySuccess, setShowCopySuccess] = useState(false);
     const [owner, setOwner] = useState(false);
+    const [isShow, setIsShow] = useState(false)
+
+    useEffect(() => {
+        // 监听
+        window.addEventListener('scroll', handleScroll)
+        // 销毁
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    let lastScrollTop = 0;
+    const handleScroll = () => {
+        let clientHeight = document.documentElement.clientHeight //可视区域高度
+        let scrollTop = document.documentElement.scrollTop; //滚动条滚动高度
+        let scrollHeight = document.documentElement.scrollHeight; //滚动内容高度
+        // console.log("scrollTop", scrollTop, 'lastScrollY', lastScrollTop, 'clientHeight', clientHeight, 'scrollHeight', scrollHeight);
+        lastScrollTop = document.documentElement.scrollTop
+        if (scrollTop >= 35 && (scrollTop > lastScrollTop||scrollTop + clientHeight >= scrollHeight)) {
+            setIsShow(true)
+            setNavActive(false)
+        } else {
+            setIsShow(false)
+        }
+    }
+
     useEffect(() => {
         const role = localStorage.getItem('role');
         if (role) {
@@ -145,21 +172,22 @@ const Bar: React.FC = () => {
     }, []);
     const handleCopyRssLink = async () => {
         try {
-            const rssLink = 'https://47.113.230.170/api/rss.xml';
+            const rssLink = 'https://just-plain.fun/api/rss.xml';
             await navigator.clipboard.writeText(rssLink);
 
-            setShowCopySuccess(true);
+            // setShowCopySuccess(true);
 
-            setTimeout(() => {
-                setShowCopySuccess(false);
-            }, 1500);
+            // setTimeout(() => {
+            //     setShowCopySuccess(false);
+            // }, 1500);
+            window.alert("RSS link copied to clipboard :P")
         } catch (err) {
             console.error('err:', err);
         }
     };
 
     return (
-        <BarContainer>
+        <BarContainer className={`show ${isShow && 'hide'}`}>
             <div>
                 <Header><a href="/"><HeaderSpan>just-plain.fun</HeaderSpan></a></Header>
             </div>
@@ -174,7 +202,7 @@ const Bar: React.FC = () => {
                         <a href="#RSS" onClick={handleCopyRssLink}>
                             RSS
                         </a>
-                        {showCopySuccess && <SuccessMessage>Copied to clipboard!</SuccessMessage>}
+                        {/* {showCopySuccess && <SuccessMessage>Copied to clipboard!</SuccessMessage>} */}
                     </li>
                     {owner && <li><a href="/compose">Compose</a></li>}
                     <Account />

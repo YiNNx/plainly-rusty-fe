@@ -1,12 +1,43 @@
-import { theme } from '../../theme';
 import styled from 'styled-components';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { theme } from '../theme';
 
-export const PostMarkdownContent = styled.div`
-    font-size: 1rem;
+export const PostContainer = styled.div`
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    animation: fadeIn .3s ease-in-out;
+    max-width: 51vw;
+    
+    @media (max-width: 850px) {
+        margin: 2rem;
+        max-width: none;
+    }
+`;
+
+export const PostCommentContainer = styled.div`
+    margin: 3rem 0;
+`;
+
+export const EditorContainer = styled.div`
+    .for-container textarea, .for-container{
+      font-family: SourceHanSerifCN;
+    }
+
+    width: 60vw;
+    @media (max-width: 850px) {
+        position: fixed;
+        top: 5rem;
+        left: 5vw;
+        width: 90vw;
+    }
+
+    .for-container .for-markdown-preview {
+      font-size: 1rem;
     color: ${theme.colors.text};
     margin-bottom: 1.5rem;
     line-height: 1.6;
@@ -20,7 +51,7 @@ export const PostMarkdownContent = styled.div`
         padding-bottom: .2rem;
         margin: 0;
         line-height: 1.8rem;
-        color: ${theme.colors.text};
+        color: inherit;
     }
 
     a {
@@ -49,8 +80,9 @@ export const PostMarkdownContent = styled.div`
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         color: ${theme.colors.primary};
+        border-bottom: none;
     }
     
     h2 {
@@ -141,7 +173,6 @@ export const PostMarkdownContent = styled.div`
     blockquote {
         display: block;
         overflow: auto;
-        color: #304c76;
         border-left: 3px solid ${theme.colors.primary};
         padding: 0.9rem 1.875rem .9rem 1.25rem;
         margin: 1.25rem 0;
@@ -216,44 +247,6 @@ export const PostMarkdownContent = styled.div`
     table td {
         min-width: 32px;
     }
-
-    @media (max-width: 850px) {
-    h2 {
-        font-size: 1.2rem;
-        margin: 1rem 0;
     }
-    }
-`;
 
-export const WithSyntaxHighlighter = ({ content }: { content: any }) => {
-    return (
-        <ReactMarkdown
-            components={{
-                code({ node, className, children, ...props }) {
-                    const match = /language-(\w+)/.exec(className || '')
-                    return match ? (
-                        <SyntaxHighlighter
-                            // @ts-ignore
-                            style={nord}
-                            language={match[1]}
-                            customStyle={{
-                                borderRadius: ".4rem",
-                            }}
-                            PreTag="div" {...props}
-                        >
-                            {String(children).replace(/\n$/, '')}
-                        </SyntaxHighlighter>
-                    ) : (
-                        <code className={className} {...props}>
-                            {children}
-                        </code>
-                    )
-                }
-            }}
-            remarkPlugins={[remarkGfm]}
-        >
-            {content}
-        </ReactMarkdown>
-    );
-};
-
+`

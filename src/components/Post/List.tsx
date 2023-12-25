@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 
 const Post = lazy(() => import('./Item'));
 
-const GET_POSTS = gql`
+let GET_POSTS = gql`
   query Posts($limit: Int, $offset: Int) {
     posts(
       filters: { status: { eq: PUBLIC } }
@@ -70,6 +70,39 @@ const BlogList: React.FC = () => {
   const limit = 6;
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [owner, setOwner] = useState(false);
+
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+
+    if (role) {
+        if (role === "Owner") {
+          setOwner(true);
+          GET_POSTS = gql`
+  query Posts($limit: Int, $offset: Int) {
+    posts(
+      orderBy: { time: DESC }
+      pagination: { offset: { limit: $limit, offset: $offset } }
+    ) {
+      nodes {
+        id
+        title
+        time
+        summary
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+        }
+    }
+}, []);
+
 
   const { data, fetchMore } = useQuery<GetPostsData>(GET_POSTS, {
     variables: { limit, offset },
@@ -77,6 +110,16 @@ const BlogList: React.FC = () => {
 
   const [allPosts, setAllPosts] = useState<PostData[]>([]);
 
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+
+    if (role) {
+        if (role === "Owner") {
+            setOwner(true);
+        }
+    }
+  }, []);
+  
   useEffect(() => {
     if (data) {
       setAllPosts((prevPosts) => [...prevPosts, ...data.posts.nodes]);

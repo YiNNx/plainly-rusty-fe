@@ -8,6 +8,7 @@ import { TagPostDetail } from '../Util/Tag';
 import { TimePostDetail } from '../Util/Time';
 import { gql, useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { DropdownButton, DropdownItem, EditList } from '../Util/Dropdown';
 
 const PostTitle = styled.h2`
     font-family: 'SourceHanSerifCN';
@@ -44,6 +45,10 @@ const PostDetailContainer = styled.div`
     }
 `;
 
+const Dropdown = styled.div`
+    position: relative;
+`;
+
 interface PostDetailProps {
     title: string;
     id: number;
@@ -53,26 +58,81 @@ interface PostDetailProps {
 }
 
 const DELETE_POST_MUTATION = gql`
+  mutation PostsDelete($id: ID!) {
+    postTagsDelete(filter: { postId: { eq: $id }})
+    postsDelete(filter: { id: { eq: $id } })
+}
+`;
+
+const PUBLICIZE_POST_MUTATION = gql`
   mutation PostsUpdate($id: ID!) {
-    postsUpdate(
-      data: {
-        title: "DELETED"
-        content: "DELETED"
-        summary: "DELETED"
-        status: "DELETED"
-      }
-      filter: { id: { eq: $id } }
-    ) {
-      id
+    postsUpdate(data: { status: "PUBLIC" }, filter: { id: { eq: $id } }) {
+        id
     }
-  }
+}
+`;
+
+const HIDE_POST_MUTATION = gql`
+  mutation PostsUpdate($id: ID!) {
+    postsUpdate(data: { status: "PRIVATE" }, filter: { id: { eq: $id } }) {
+        id
+    }
+}
 `;
 
 const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tags, id }) => {
     const [owner, setOwner] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    useEffect(() => {
+        // 监听
+        window.addEventListener('scroll', handleScroll)
+        // 销毁
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    let lastScrollTop = 0;
+    const handleScroll = () => {
+        let clientHeight = document.documentElement.clientHeight //可视区域高度
+        let scrollTop = document.documentElement.scrollTop; //滚动条滚动高度
+        let scrollHeight = document.documentElement.scrollHeight; //滚动内容高度
+        // console.log("scrollTop", scrollTop, 'lastScrollY', lastScrollTop, 'clientHeight', clientHeight, 'scrollHeight', scrollHeight);
+        if (scrollTop > lastScrollTop) {
+            setIsOpen(false)
+        } 
+        lastScrollTop = document.documentElement.scrollTop
+        // 判断是否滚动到底部
+        if (scrollTop + clientHeight === scrollHeight) {
+        }
+    }
     const [deletePost] = useMutation(DELETE_POST_MUTATION, {
         onCompleted: (data) => {
             navigate("/");
+            window.location.reload();
+        },
+        onError: (error) => {
+            console.error("Mutation error:", error.message);
+        },
+        context: {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        },
+    });
+    const [publicizePost] = useMutation(PUBLICIZE_POST_MUTATION, {
+        onCompleted: (data) => {
+            window.location.reload();
+        },
+        onError: (error) => {
+            console.error("Mutation error:", error.message);
+        },
+        context: {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        },
+    });
+    const [hidePost] = useMutation(HIDE_POST_MUTATION, {
+        onCompleted: (data) => {
             window.location.reload();
         },
         onError: (error) => {
@@ -95,7 +155,24 @@ const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tags, id 
     }, []);
 
     const handleDelete = () => {
-        deletePost({ variables: { id } })
+        // Display a confirmation dialog before proceeding with deletion
+        const shouldDelete = window.confirm('Are you sure you want to delete this post?');
+
+        if (shouldDelete) {
+            deletePost({ variables: { id } });
+        }
+    };
+
+    let options = ['Edit','Publicize','Hide'];
+    const handleOptions = (option: string) => {
+        setIsOpen(false);
+        if (option === 'Edit') {
+            navigate(`/compose?post_id=${id}`);  
+        } else if (option === 'Publicize') {
+            publicizePost({ variables: { id } });
+        } else if (option === 'Hide'){
+            hidePost({ variables: { id } });
+        }
     };
 
     return (
@@ -104,10 +181,21 @@ const PostDetail: React.FC<PostDetailProps> = ({ title, content, time, tags, id 
                 <PostTitle>
                     <span>{title}</span>
                     {owner && (
-                        <div>
-                            <a href={`/compose?post_id=${id}`}><IconEdit /></a>
+                        <Dropdown>
+                                <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+                                    <IconEdit />
+                                </DropdownButton>
+                                {isOpen && (
+                                    <EditList>
+                                        {options.map((option) => (
+                                            <DropdownItem key={option} onClick={() => handleOptions(option)}>
+                                                {option}
+                                            </DropdownItem>
+                                        ))}
+                                    </EditList>
+                                )}
                             <IconDelete onClick={handleDelete} />
-                        </div>
+                        </Dropdown>
                     )}
                 </PostTitle>
             </div>

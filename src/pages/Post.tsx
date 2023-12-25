@@ -4,12 +4,12 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import PostDetail from '../components/Post/Detail';
 import PostComment from './Comment';
-import { PostContainer } from '../containers/Cantainers';
+import { PostContainer } from '../containers/Containers';
 import Breadcrumbs from '../components/Util/Breadcrumbs';
 
 const GET_POST = gql`
   query Posts($postId: Int!) {
-    posts(filters: { id: { eq: $postId }, status: { eq: PUBLIC } }) {
+    posts(filters: { id: { eq: $postId } }) {
       nodes {
         id
         title
