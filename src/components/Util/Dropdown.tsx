@@ -27,7 +27,7 @@ export const DropdownList = styled.ul`
     background-color: #fff;
     box-shadow: 0 2px 6px ${theme.colors.shadow};
     border-radius: 1rem;
-    z-index: 500;
+    z-index: 0;
 `;
 
 export const EditList = styled(DropdownList)`

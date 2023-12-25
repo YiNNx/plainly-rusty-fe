@@ -11,7 +11,7 @@ export const PageContainer = styled.div`
 `;
 
 export const MainContent = styled.div`
-  z-index: 10;
+  z-index: 0;
   flex: 1;
   padding: 4.8rem 10vw 4rem 17vw; 
   margin-right: 19vw;
@@ -26,6 +26,7 @@ export const MainContent = styled.div`
 `;
 
 export const Sidebar = styled.div`
+  z-index: 1000;
   padding: 4rem 2vw 4rem 3vw;
   width: 17vw; 
   position: fixed;

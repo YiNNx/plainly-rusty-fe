@@ -153,13 +153,29 @@ const Bar: React.FC = () => {
         let scrollTop = document.documentElement.scrollTop; //滚动条滚动高度
         let scrollHeight = document.documentElement.scrollHeight; //滚动内容高度
         // console.log("scrollTop", scrollTop, 'lastScrollY', lastScrollTop, 'clientHeight', clientHeight, 'scrollHeight', scrollHeight);
-        lastScrollTop = document.documentElement.scrollTop
-        if (scrollTop >= 35 && (scrollTop > lastScrollTop||scrollTop + clientHeight >= scrollHeight)) {
+        if (scrollTop>0&&scrollTop > lastScrollTop) {
             setIsShow(true)
             setNavActive(false)
         } else {
-            setIsShow(false)
+          setIsShow(false)
         }
+        lastScrollTop = document.documentElement.scrollTop
+        // 判断是否滚动到底部
+        if (scrollTop + clientHeight === scrollHeight) {
+          console.log("滚动到底部");
+        }
+
+        // let clientHeight = document.documentElement.clientHeight //可视区域高度
+        // let scrollTop = document.documentElement.scrollTop; //滚动条滚动高度
+        // let scrollHeight = document.documentElement.scrollHeight; //滚动内容高度
+        // // console.log("scrollTop", scrollTop, 'lastScrollY', lastScrollTop, 'clientHeight', clientHeight, 'scrollHeight', scrollHeight);
+        // lastScrollTop = document.documentElement.scrollTop
+        // if (scrollTop!==0||scrollTop > lastScrollTop) {
+        //     setNavActive(false)
+        //     setIsShow(true)
+        // } else {
+        //     setIsShow(false)
+        // }
     }
 
     useEffect(() => {
